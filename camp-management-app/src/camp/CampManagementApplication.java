@@ -227,12 +227,19 @@ public class CampManagementApplication {
         System.out.println("시험 점수를 등록합니다.");
         // 기능 구현
         CreateScore_Function createscore_function = new CreateScore_Function(studentId,studentStore,subjectStore,ScoreStore);
-        studentStore = createscore_function.GetstudentStore();
-        subjectStore = createscore_function.GetsubjectStore();
-        ScoreStore =createscore_function.GetScoreStore();
+        try{createscore_function.addStudentScore(studentId);
+            System.out.println("\n점수 등록 성공!");}catch (Exception e){
+            System.out.println("function.addStudentScore");
+        }
+        try {
+            studentStore = createscore_function.GetstudentStore();
+            subjectStore = createscore_function.GetsubjectStore();
+            ScoreStore =createscore_function.GetScoreStore();
+        }catch (Exception e) {
+            System.out.println("geeting the data");
+        }
 
-        createscore_function.addStudentScore(studentId);
-        System.out.println("\n점수 등록 성공!");
+
     }
 
     // 수강생의 과목별 회차 점수 수정
