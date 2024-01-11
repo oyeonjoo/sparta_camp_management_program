@@ -30,6 +30,9 @@ public class CreateScore_Function {
         public List<Score> GetScoreStore(){
             return this.ScoreStore;
         }
+
+        // 점수 -> 등급 클래스
+
     }
 
 
