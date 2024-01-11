@@ -228,7 +228,7 @@ public class CampManagementApplication {
         subjectStore = createscore_function.GetsubjectStore();
         ScoreStore =createscore_function.GetScoreStore();
 
-
+        createscore_function.addStudentScore(studentId);
         System.out.println("\n점수 등록 성공!");
     }
 

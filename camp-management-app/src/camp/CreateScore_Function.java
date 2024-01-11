@@ -32,7 +32,7 @@ public class CreateScore_Function {
             return this.ScoreStore;
         }
 
-        public void addStudentScore (String studentId){
+        public void addStudentScore (int studentId){
             Scanner sc = new Scanner(System.in);
             Student student = new Student();
             student.getsubjectlist();
