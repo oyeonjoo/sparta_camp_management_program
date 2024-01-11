@@ -229,15 +229,6 @@ public class CampManagementApplication {
         subjectStore = createscore_function.GetsubjectStore();
         ScoreStore =createscore_function.GetScoreStore();
 
-        // 시험 과목 입력
-        String inputSubjectName =  sc.nextLine();
-
-        // 시험 회차 입력
-        Integer inputExaminationRound = sc.nextInt();
-
-        // 점수 입력
-        Integer inputScore = sc.nextInt();
-
 
         System.out.println("\n점수 등록 성공!");
     }
