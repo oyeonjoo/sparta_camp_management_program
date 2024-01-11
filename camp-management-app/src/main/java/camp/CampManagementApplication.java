@@ -172,8 +172,6 @@ public class CampManagementApplication {
         StudentRegister studentregister = new StudentRegister(studentIndex,studentStore,subjectStore,ScoreStore);
         studentregister.functions();
         studentStore = studentregister.GetstudentStore();
-        subjectStore=studentregister.GetsubjectStore();
-        ScoreStore= studentregister.GetScoreStore();
         System.out.println("수강생 등록 성공!\n");
     }
 
