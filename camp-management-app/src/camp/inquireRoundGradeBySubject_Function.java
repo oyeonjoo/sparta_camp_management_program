@@ -1,8 +1,8 @@
 package camp;
 
-import camp.model.Score;
-import camp.model.Student;
 import camp.model.Subject;
+import camp.model.Student;
+import camp.model.Score;
 
 import java.util.List;
 import java.util.Scanner;
@@ -14,8 +14,8 @@ public class  inquireRoundGradeBySubject_Function{
         private static List<Score> ScoreStore;
         private String studentId;
         public void functions() {
-            //hashmap scoreList (과목id, 회차별 점수List)
-            //List (index = 회차, value = 점수)
+            //hashmap scoremap (과목id, 회차별 점수List)
+            //scoreStore List(index = 회차, value = 점수)
             //얘가 student에 들어갈 거임
             // 여기에 작업하시요
             String sId = studentId; // 관리할 수강생 고유 번호
@@ -28,17 +28,20 @@ public class  inquireRoundGradeBySubject_Function{
             String subjectName = scan.nextLine();
 
             //과목 고유번호 찾기
-            String subNum;
-            for(Subject s : stu.getSubjectStore()){
-                if(s.getSubjectName().equals(subjectName)){
-                    subNum=s.getSubjectId();
+            int subNum=0;
+            for(int i=0;i<5;i++){
+                if(stu.getSubject(i).getSubjectName().equals(subjectName)){
+                    subNum=i;
                 }
             }
 
             System.out.println("회차별 등급을 조회합니다...");
-            // 기능 구현
-            // 기능 구현 (조회할 특정 과목)
-            List<int> scoreList.getValue(subNum)
+            // 과목 고유번호에 맞는 ScoreStore가져오기
+            //scoremap.getValue(subNum) = LinkedList<Score> ScoreStore반환
+            for(Score s : stu.getScorelist(subNum)){
+
+            }
+
 
         }
     inquireRoundGradeBySubject_Function(String studentId,List<Student> studentStore,List<Subject> subjectStore,List<Score> ScoreStore){
