@@ -56,6 +56,9 @@ public class Student {
         //새 리스트 넣기(바꾸기)
         scoremap.put(index,temp);
     }
+    public List getsubjectlist(){
+        return subjectStore;
+    }
     public List<Score> getScorelist(int index) {
         return scoremap.get(index);
     }
