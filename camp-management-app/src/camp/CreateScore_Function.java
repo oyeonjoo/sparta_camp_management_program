@@ -11,12 +11,12 @@ public class CreateScore_Function {
         private static List<Student> studentStore;
         private static List<Subject> subjectStore;
         private static List<Score> ScoreStore;
-        private String studentId;
+        private int studentId;
         public void functions() {
         // 여기에 작업하시요
 
         }
-    CreateScore_Function(String studentId,List<Student> studentStore,List<Subject> subjectStore,List<Score> ScoreStore){
+    CreateScore_Function(int studentId,List<Student> studentStore,List<Subject> subjectStore,List<Score> ScoreStore){
         this.studentId = studentId;
         this.studentStore =studentStore;
         this.subjectStore = subjectStore;
@@ -32,58 +32,67 @@ public class CreateScore_Function {
             return this.ScoreStore;
         }
 
-        public void addStudentScore (String studentId){
+        public void addStudentScore (int studentId){
             Scanner sc = new Scanner(System.in);
-            Student student = new Student();
+            Student student = GetstudentStore().get(1);
             student.getsubjectlist();
             // 과목 입력
             System.out.println("과목 번호를 입력해주세요.");
             int inputSubject = sc.nextInt();
             // 회차 입력
             System.out.println("시험 회차를 입력해주세요.");
-            dataExists(AvailableExamGroud());
+            int count = AvailableExamGroud();
+            dataExists(student,inputSubject,count);
             // 점수 입력
             System.out.println("시험 점수를 입력해주세요");
-            AvailableScore();
-            student.addScore(inputSubject, student.getScorelist(inputSubject).add(AvailableExamGroud(), AvailableScore()));
+            AvailableScore(studentId,inputSubject,count);
+
         }
 
         // 점수 등록 존재 여부 확인
-        public void dataExists (){
-            Student student = new Student();
-            if(student.getScorelist(int index).exists = false){
+        public void dataExists (Student s,int sub,int index){
+            if(s.getScorelist(sub).get(index)!=null){
                 System.out.println("이미 점수가 입력되어있습니다. 다시 입력하세요.");
-                addStudentScore(String studentId);
+                addStudentScore(sub);
               }else{
                 System.out.println("점수를 등록할 수 있습니다.");
             }
             }
 
-        public int AvailableExamGroud (){
+        public int AvailableExamGroud(){
             Scanner sc = new Scanner(System.in);
             int inputExamGround = sc.nextInt();
             if(inputExamGround <= 10 && inputExamGround > 0){
                 return inputExamGround;
             }else {
                 System.out.println("시험 회차를 1~10 값으로 입력해주세요");
-                return AvailableExamGroud();
+                AvailableExamGroud ();
             }
+            return inputExamGround;
         }
 
-        public int AvailableScore (){
-            Scanner sc = new Scanner(System.in);
+        public void AvailableScore (int stid,int courseid, int count){
+            Scanner sc = new Scanner(System.in); // 점수 받기
             int inputScore = sc.nextInt();
             if(inputScore <= 100 && inputScore >= 0){
-                return inputScore;
+                //리스트에 있는 학생 에 있는 코스 에 있는 , 회차에 값 넣기
+                Student news = studentStore.get(stid);
+                Score newScore = new Score("",count);
+                news.addScore(courseid,newScore);
+                studentStore.add(news);
             }else {
                 System.out.println("시험 점수를 0 ~ 100 값으로 입력해주세요");
-                return AvailableScore();
+                AvailableScore(stid,courseid,count);
             }
         }
 
 //         점수 -> 등급 클래스
-        public String scoreToGrade(List<Score> scores){
+        public String scoreToGrade(Student s,int subject,int count){
+            List tmp = s.getsubjectlist();
+            Subject sub = (Subject) tmp.get(1);
+            String subjectType = sub.getSubjectType();
             String grade = null;
+            int scores = s.getScorelist(subject).get(count).getScore();
             switch (subjectType){
                 case "MANDATORY":
                     if(scores >= 95){

@@ -214,14 +214,16 @@ public class CampManagementApplication {
         }
     }
 
-    public static String getStudentId() {
+    public static int getStudentId() {
         System.out.print("\n관리할 수강생의 번호를 입력하시오...");
-        return sc.next();
+        return sc.nextInt();
     }
 
     // 수강생의 과목별 시험 회차 및 점수 등록
     private static void createScore() {
-        String studentId = getStudentId(); // 관리할 수강생 고유 번호
+        //학생 id 받기
+
+        int studentId = getStudentId(); // 관리할 수강생 고유 번호
         System.out.println("시험 점수를 등록합니다.");
         // 기능 구현
         CreateScore_Function createscore_function = new CreateScore_Function(studentId,studentStore,subjectStore,ScoreStore);
@@ -229,13 +231,13 @@ public class CampManagementApplication {
         subjectStore = createscore_function.GetsubjectStore();
         ScoreStore =createscore_function.GetScoreStore();
 
-
+        createscore_function.addStudentScore(studentId);
         System.out.println("\n점수 등록 성공!");
     }
 
     // 수강생의 과목별 회차 점수 수정
     private static void updateRoundScoreBySubject() {
-        String studentId = getStudentId(); // 관리할 수강생 고유 번호
+        String studentId = "temp"; // 관리할 수강생 고유 번호
         // 기능 구현 (수정할 과목 및 회차, 점수)
         System.out.println("시험 점수를 수정합니다...");
         UpdataRoundScore_Function update = new UpdataRoundScore_Function(studentId,studentStore,subjectStore,ScoreStore);
@@ -248,7 +250,7 @@ public class CampManagementApplication {
 
     // 수강생의 특정 과목 회차별 등급 조회
     private static void inquireRoundGradeBySubject() {
-        String studentId = getStudentId(); // 관리할 수강생 고유 번호
+        String studentId = "temp"; // 관리할 수강생 고유 번호
         inquireRoundGradeBySubject_Function inquireroundgradebysubject_function = new inquireRoundGradeBySubject_Function(studentId,studentStore,subjectStore,ScoreStore);
         inquireroundgradebysubject_function.functions();
         // 보기용이라 가져올 필요 있는지 모르겠음
