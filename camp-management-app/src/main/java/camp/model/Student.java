@@ -23,6 +23,11 @@ public class Student {
         scoremap.put(3,ScoreStore);
         scoremap.put(4,ScoreStore);
         scoremap.put(5,ScoreStore);
+        scoremap.put(6,ScoreStore);
+        scoremap.put(7,ScoreStore);
+        scoremap.put(8,ScoreStore);
+        scoremap.put(9,ScoreStore);
+        scoremap.put(10,ScoreStore);
     }
 
     // Getter
