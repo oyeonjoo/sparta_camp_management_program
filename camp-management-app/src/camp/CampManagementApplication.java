@@ -221,13 +221,23 @@ public class CampManagementApplication {
     // 수강생의 과목별 시험 회차 및 점수 등록
     private static void createScore() {
         String studentId = getStudentId(); // 관리할 수강생 고유 번호
-        System.out.println("시험 점수를 등록합니다...");
+        System.out.println("시험 점수를 등록합니다.");
         // 기능 구현
         CreateScore_Function createscore_function = new CreateScore_Function(studentId,studentStore,subjectStore,ScoreStore);
-        createscore_function.functions();
         studentStore = createscore_function.GetstudentStore();
         subjectStore = createscore_function.GetsubjectStore();
         ScoreStore =createscore_function.GetScoreStore();
+
+        // 시험 과목 입력
+        String inputSubjectName =  sc.nextLine();
+
+        // 시험 회차 입력
+        Integer inputExaminationRound = sc.nextInt();
+
+        // 점수 입력
+        Integer inputScore = sc.nextInt();
+
+
         System.out.println("\n점수 등록 성공!");
     }
 
