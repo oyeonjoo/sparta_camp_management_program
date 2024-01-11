@@ -7,13 +7,11 @@ import camp.model.Subject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
-public class StudentRegister {
+public class StudentView {
     private static List<Student> studentStore;
     private static List<Subject> subjectStore;
     private static List<Score> ScoreStore;
-
-    StudentRegister(List<Student> studentStore,List<Subject> subjectStore,List<Score> ScoreStore){
+    StudentView(List<Student> studentStore,List<Subject> subjectStore,List<Score> ScoreStore){
         this.studentStore =studentStore;
         this.subjectStore = subjectStore;
         this.ScoreStore = ScoreStore;

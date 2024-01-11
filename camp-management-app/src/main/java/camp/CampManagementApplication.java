@@ -169,10 +169,15 @@ public class CampManagementApplication {
         System.out.println("\n수강생을 등록합니다...");
         System.out.print("수강생 이름 입력: ");
         String studentName = sc.next();
-        // 기능 구현 (필수 과목, 선택 과목)
-
         Student student = new Student(sequence(INDEX_TYPE_STUDENT), studentName); // 수강생 인스턴스 생성 예시 코드
-        // 기능 구현
+
+        // 기능 구현 (필수 과목, 선택 과목)
+        StudentRegister studentregister = new StudentRegister(studentStore,subjectStore,ScoreStore);
+        studentregister.functions();
+        studentStore = studentregister.GetstudentStore();
+        subjectStore=studentregister.GetsubjectStore();
+        ScoreStore= studentregister.GetScoreStore();
+          // 기능 구현
         System.out.println("수강생 등록 성공!\n");
     }
 
@@ -180,6 +185,12 @@ public class CampManagementApplication {
     private static void inquireStudent() {
         System.out.println("\n수강생 목록을 조회합니다...");
         // 기능 구현
+        StudentView studentview = new StudentView(studentStore,subjectStore,ScoreStore);
+        studentview.functions();
+        // 보기용이라 getdata 는 할필요 없을듯 해요
+//        studentview.GetScoreStore();
+//        studentview.GetstudentStore();
+//        studentview.GetsubjectStore();
         System.out.println("\n수강생 목록 조회 성공!");
     }
 
@@ -218,7 +229,11 @@ public class CampManagementApplication {
         String studentId = getStudentId(); // 관리할 수강생 고유 번호
         System.out.println("시험 점수를 등록합니다...");
         // 기능 구현
-
+        CreateScore_Function createscore_function = new CreateScore_Function(studentId,studentStore,subjectStore,ScoreStore);
+        createscore_function.functions();
+        studentStore = createscore_function.GetstudentStore();
+        subjectStore = createscore_function.GetsubjectStore();
+        ScoreStore =createscore_function.GetScoreStore();
         System.out.println("\n점수 등록 성공!");
     }
 
@@ -227,6 +242,10 @@ public class CampManagementApplication {
         String studentId = getStudentId(); // 관리할 수강생 고유 번호
         // 기능 구현 (수정할 과목 및 회차, 점수)
         System.out.println("시험 점수를 수정합니다...");
+        UpdataRoundScore_Function update = new UpdataRoundScore_Function(studentId,studentStore,subjectStore,ScoreStore);
+        studentStore = update.GetstudentStore();
+        subjectStore = update.GetsubjectStore();
+        ScoreStore =update.GetScoreStore();
         // 기능 구현
         System.out.println("\n점수 수정 성공!");
     }
@@ -234,10 +253,12 @@ public class CampManagementApplication {
     // 수강생의 특정 과목 회차별 등급 조회
     private static void inquireRoundGradeBySubject() {
         String studentId = getStudentId(); // 관리할 수강생 고유 번호
-        // 기능 구현 (조회할 특정 과목)
-        System.out.println("회차별 등급을 조회합니다...");
-        // 기능 구현
+        inquireRoundGradeBySubject_Function inquireroundgradebysubject_function = new inquireRoundGradeBySubject_Function(studentId,studentStore,subjectStore,ScoreStore);
+        inquireroundgradebysubject_function.functions();
+        // 보기용이라 가져올 필요 있는지 모르겠음
+//        studentStore = inquireroundgradebysubject_function.GetstudentStore();
+//        subjectStore = inquireroundgradebysubject_function.GetsubjectStore();
+//        ScoreStore =inquireroundgradebysubject_function.GetScoreStore();
         System.out.println("\n등급 조회 성공!");
     }
-
 }
