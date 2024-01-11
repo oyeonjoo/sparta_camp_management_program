@@ -29,9 +29,9 @@ public class CampManagementApplication {
     // index 관리 필드
     private static int studentIndex = 0;
     private static final String INDEX_TYPE_STUDENT = "ST";
-    private static int subjectIndex;
+    private static int subjectIndex=0;
     private static final String INDEX_TYPE_SUBJECT = "SU";
-    private static int scoreIndex;
+    private static int scoreIndex=0;
     private static final String INDEX_TYPE_SCORE = "SC";
 
     // 스캐너
