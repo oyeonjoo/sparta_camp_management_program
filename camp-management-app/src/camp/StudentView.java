@@ -17,7 +17,7 @@ public class StudentView {
         this.ScoreStore = ScoreStore;
     }
     public void functions() {
-        // 여기에 작업하시요
+        // 여기에 작업하시요////
     }
     public List<Student> GetstudentStore(){
         return this.studentStore;
