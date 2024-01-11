@@ -32,6 +32,41 @@ public class CreateScore_Function {
         }
 
         // 점수 -> 등급 클래스
+        public String scoreToGrade(List<Score> scores){
+            String grade = null;
+            switch (subjectType){
+                case "MANDATORY":
+                    if(scores >= 95){
+                        grade = "A";
+                    }else if ((scores >= 90)){
+                        grade = "B";
+                    }else if (scores >= 80){
+                        grade = "C";
+                    }else if (scores >= 70){
+                        grade = "D";
+                    } else if (scores >= 60) {
+                        grade = "F";
+                    }else {
+                        grade = "N";
+                    }
+
+                case "CHOICE":
+                    if(scores >= 90){
+                        grade = "A";
+                    }else if ((scores >= 80)){
+                        grade = "B";
+                    }else if (scores >= 70){
+                        grade = "C";
+                    }else if (scores >= 60){
+                        grade = "D";
+                    } else if (scores >= 50) {
+                        grade = "F";
+                    }else {
+                        grade = "N";
+                    }
+            }
+            return grade;
+        }
 
     }
 
