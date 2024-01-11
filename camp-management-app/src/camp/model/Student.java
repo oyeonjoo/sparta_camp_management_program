@@ -20,7 +20,7 @@ public class Student {
         Score temp = new Score("",-1);
         for (int i = 0; i < 10; i++) {
             ScoreStore.add(temp);
-        }
+        }//
         scoremap.put(0,ScoreStore);
         scoremap.put(1,ScoreStore);
         scoremap.put(2,ScoreStore);
