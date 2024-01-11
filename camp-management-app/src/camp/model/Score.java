@@ -3,9 +3,6 @@ package camp.model;
 public class Score {
     private String scoreId;
     int score = 0;
-    public Score(String seq) {
-        this.scoreId = seq;
-    }
     public Score(String seq,int score) {
         this.scoreId = seq;
         this.score = score;
@@ -17,4 +14,6 @@ public class Score {
     public String getScoreId() {
         return scoreId;
     }
+
+    public int getScore(){return score;}
 }
