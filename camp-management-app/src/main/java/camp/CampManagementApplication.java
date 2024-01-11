@@ -27,7 +27,7 @@ public class CampManagementApplication {
     private static String SUBJECT_TYPE_CHOICE = "CHOICE";
 
     // index 관리 필드
-    private static int studentIndex;
+    private static int studentIndex = 0;
     private static final String INDEX_TYPE_STUDENT = "ST";
     private static int subjectIndex;
     private static final String INDEX_TYPE_SUBJECT = "SU";
@@ -168,11 +168,8 @@ public class CampManagementApplication {
     private static void createStudent() {
         System.out.println("\n수강생을 등록합니다...");
         System.out.print("수강생 이름 입력: ");
-        String studentName = sc.next();
-        Student student = new Student(sequence(INDEX_TYPE_STUDENT), studentName); // 수강생 인스턴스 생성 예시 코드
-
         // 기능 구현 (필수 과목, 선택 과목)
-        StudentRegister studentregister = new StudentRegister(studentStore,subjectStore,ScoreStore);
+        StudentRegister studentregister = new StudentRegister(studentIndex,studentStore,subjectStore,ScoreStore);
         studentregister.functions();
         studentStore = studentregister.GetstudentStore();
         subjectStore=studentregister.GetsubjectStore();
