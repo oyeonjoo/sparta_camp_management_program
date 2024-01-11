@@ -1,7 +1,7 @@
 package camp;
 
-import camp.model.Subject;
 import camp.model.Student;
+import camp.model.Subject;
 import camp.model.Score;
 
 import java.util.List;
@@ -37,11 +37,10 @@ public class  inquireRoundGradeBySubject_Function{
 
             System.out.println("회차별 등급을 조회합니다...");
             // 과목 고유번호에 맞는 ScoreStore가져오기
+            int gradeNum=1;
             for(Score s : stu.getScorelist(subNum)){
-
+               System.out.println("회차 : "+(gradeNum++) + "\t 점수 : "+s.getScore());
             }
-
-
         }
     inquireRoundGradeBySubject_Function(String studentId,List<Student> studentStore,List<Subject> subjectStore,List<Score> ScoreStore){
             this.studentId = studentId;
