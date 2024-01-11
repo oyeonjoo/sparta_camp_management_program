@@ -19,6 +19,8 @@ public class StudentRegister {
         String studentName = scan.next();
         Student student = new Student(sequence(INDEX_TYPE_STUDENT), studentName); // 수강생 인스턴스 생성 예시 코드
         System.out.println("이름:"+ studentName + "등록중 ....");
+        studentStore.add(student);
+        // 기능 구현 (필수 과목, 선택 과목)
 
         // 기다리기
         try{
@@ -26,6 +28,7 @@ public class StudentRegister {
         }catch (Exception e){
             System.out.println("Student Register 2초 대기 문제");
         }
+
         // 끝
         scan = null;
     }
