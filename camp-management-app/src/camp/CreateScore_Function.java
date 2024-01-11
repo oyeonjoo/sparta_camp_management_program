@@ -41,13 +41,11 @@ public class CreateScore_Function {
             int inputSubject = sc.nextInt();
             // 회차 입력
             System.out.println("시험 회차를 입력해주세요.");
-            int inputExamGround = sc.nextInt();
-            AvailableExamGroud(inputExamGround);
+            dataExists(AvailableExamGroud());
             // 점수 입력
             System.out.println("시험 점수를 입력해주세요");
-            int inputScore = sc.nextInt();
             AvailableScore();
-            student.addScore(inputSubject, student.getScorelist(inputSubject).add(inputExamGround, inputScore));
+            student.addScore(inputSubject, student.getScorelist(inputSubject).add(AvailableExamGroud(), AvailableScore()));
         }
 
         // 점수 등록 존재 여부 확인
@@ -56,10 +54,14 @@ public class CreateScore_Function {
             if(student.getScorelist(int index).exists = false){
                 System.out.println("이미 점수가 입력되어있습니다. 다시 입력하세요.");
                 addStudentScore(String studentId);
-              }
+              }else{
+                System.out.println("점수를 등록할 수 있습니다.");
+            }
             }
 
-        public int AvailableExamGroud (int inputExamGround){
+        public int AvailableExamGroud (){
+            Scanner sc = new Scanner(System.in);
+            int inputExamGround = sc.nextInt();
             if(inputExamGround <= 10 && inputExamGround > 0){
                 return inputExamGround;
             }else {
@@ -69,6 +71,8 @@ public class CreateScore_Function {
         }
 
         public int AvailableScore (){
+            Scanner sc = new Scanner(System.in);
+            int inputScore = sc.nextInt();
             if(inputScore <= 100 && inputScore >= 0){
                 return inputScore;
             }else {
