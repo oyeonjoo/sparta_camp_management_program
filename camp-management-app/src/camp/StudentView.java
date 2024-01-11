@@ -29,7 +29,7 @@ public class StudentView {
                 num = 2;
                 System.out.println("학생 번호 : " + s.getStudentId() + "학생 이름: " + s.getStudentName());
             }
-        } if(num == 1) { //
+        } if(num == 1) {
             System.out.println("학생을 찾지 못했습니다.");
         }
     }
