@@ -49,12 +49,20 @@ public class CreateScore_Function {
         }
 
         // 점수 등록 존재 여부 확인
-        public boolean dataExists (){
+        public void dataExists (){
             Student student = new Student();
-            if(student.getScorelist(int index).exists){
-                return true;
-            }else{
-                return false;
+            if(student.getScorelist(int index).exists = false){
+                System.out.println("이미 점수가 입력되어있습니다. 다시 입력하세요.");
+                addStudentScore(String studentId);
+              }
+            }
+
+        public int AvailableExamGroud (){
+            if(inputExamGround <= 10 && inputExamGround > 0){
+                return inputExamGround;
+            }else {
+                System.out.println("시험 회차를 1~10 값으로 입력해주세요");
+                return AvailableExamGroud();
             }
         }
 
