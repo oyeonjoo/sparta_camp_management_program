@@ -22,6 +22,7 @@ public class CreateScore_Function {
         this.subjectStore = subjectStore;
         this.ScoreStore = ScoreStore;
         }
+
         public List<Student> GetstudentStore(){
             return this.studentStore;
         }
@@ -34,7 +35,7 @@ public class CreateScore_Function {
 
         public void addStudentScore (int studentId){
             Scanner sc = new Scanner(System.in);
-            Student student = GetstudentStore().get(1);
+            Student student = GetstudentStore().get(studentId);
             student.getsubjectlist();
             // 과목 입력
             System.out.println("과목 번호를 입력해주세요.");
@@ -51,7 +52,7 @@ public class CreateScore_Function {
 
         // 점수 등록 존재 여부 확인
         public void dataExists (Student s,int sub,int index){
-            if(s.getScorelist(sub).get(index)!=null){
+            if(s.getScorelist(sub).get(index).getScore()>=0){
                 System.out.println("이미 점수가 입력되어있습니다. 다시 입력하세요.");
                 addStudentScore(sub);
               }else{
