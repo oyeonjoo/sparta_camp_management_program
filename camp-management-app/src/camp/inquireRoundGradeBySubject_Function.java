@@ -37,7 +37,6 @@ public class  inquireRoundGradeBySubject_Function{
 
             System.out.println("회차별 등급을 조회합니다...");
             // 과목 고유번호에 맞는 ScoreStore가져오기
-            //scoremap.getValue(subNum) = LinkedList<Score> ScoreStore반환
             for(Score s : stu.getScorelist(subNum)){
 
             }
