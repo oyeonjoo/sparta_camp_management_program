@@ -14,7 +14,7 @@ public class  inquireRoundGradeBySubject_Function{
         private static List<Score> ScoreStore;
         private String studentId;
         public void functions() {
-            //hashmap scoremap (과목id, 회차별 점수List)
+            // hashmap scoremap (과목id, 회차별 점수List)
             //scoreStore List(index = 회차, value = 점수)
             //얘가 student에 들어갈 거임
             // 여기에 작업하시요
