@@ -42,9 +42,11 @@ public class CreateScore_Function {
             // 회차 입력
             System.out.println("시험 회차를 입력해주세요.");
             int inputExamGround = sc.nextInt();
+            AvailableExamGroud(inputExamGround);
             // 점수 입력
             System.out.println("시험 점수를 입력해주세요");
             int inputScore = sc.nextInt();
+            AvailableScore();
             student.addScore(inputSubject, student.getScorelist(inputSubject).add(inputExamGround, inputScore));
         }
 
@@ -57,7 +59,7 @@ public class CreateScore_Function {
               }
             }
 
-        public int AvailableExamGroud (){
+        public int AvailableExamGroud (int inputExamGround){
             if(inputExamGround <= 10 && inputExamGround > 0){
                 return inputExamGround;
             }else {
@@ -66,7 +68,14 @@ public class CreateScore_Function {
             }
         }
 
-
+        public int AvailableScore (){
+            if(inputScore <= 100 && inputScore >= 0){
+                return inputScore;
+            }else {
+                System.out.println("시험 점수를 0 ~ 100 값으로 입력해주세요");
+                return AvailableScore();
+            }
+        }
 
 //         점수 -> 등급 클래스
         public String scoreToGrade(List<Score> scores){
