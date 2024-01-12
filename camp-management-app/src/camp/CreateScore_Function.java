@@ -48,7 +48,8 @@ public class CreateScore_Function {
         }
         // 과목 입력
         System.out.println("과목 번호를 입력해주세요."); // 과목 오류 추가 요망
-        int inputSubject = sc.nextInt()-1;
+        int inputSubject = availableSubject();
+//        int inputSubject = sc.nextInt()-1;
         // 과목 오류
 
         // 회차 입력
@@ -61,7 +62,16 @@ public class CreateScore_Function {
 
     }
 
-//    public
+    public int availableSubject (){ // 과목 오류 해결
+        Student student = getStudentStore().get(studentId);
+        int num = sc.nextInt();
+        if(num > student.getsubjectlist().size()){
+            System.out.println("입력하신 항목이 없습니다. 다시 입력해주세요.");
+            return availableSubject();
+        }else {
+            return num;
+        }
+    }
 
     // 점수 등록 존재 여부 확인
     public void dataExists (Student s,int sub,int index){
@@ -85,7 +95,7 @@ public class CreateScore_Function {
 
     }
 
-    public void availableScore(int stid, int courseid, int count){
+    public void availableScore(int stid, int courseid, int count){ // 범위 오류 해결 요망
         int inputScore = sc.nextInt(); // 점수 받기
         if(inputScore <= 100 && inputScore >= 0){
             //리스트에 있는 학생 에 있는 코스 에 있는 , 회차에 값 넣기
@@ -177,5 +187,7 @@ public class CreateScore_Function {
     }
 
 }
+
+
 
 
