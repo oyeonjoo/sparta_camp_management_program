@@ -18,14 +18,30 @@ public class  inquireRoundGradeBySubject_Function{
             //scoreStore List(index = 회차, value = 점수)
             //얘가 student에 들어갈 거임
             // 여기에 작업하시요
-            String sId = studentId; // 관리할 수강생 고유 번호
-            Student stu = (Student) studentStore.stream()
-                    .filter((Student student)-> student.getStudentId().equals(sId));
+            System.out.println("여기1");
+            Scanner scan = new Scanner(System.in);
+            System.out.println("수강생의 고유 번호를 입력하세요 ex) ST1 : ");
+            System.out.println(studentStore);
+            String sId = scan.nextLine(); // 관리할 수강생 고유 번호
+
+            Student stu = new Student("","");
+            for(Student s : studentStore){
+                if(s.getStudentId().equals(sId)){
+                    stu = s;
+                    break;
+                }
+            }
+            //Student stu = (Student)
+            /*studentStore.stream()
+                    .filter((Student student)-> student.getStudentId().equals(sId))
+                    .forEach(student-> System.out.println(student.getStudentId()));*/
+
+            System.out.println("여기2");
 
             // 기능 구현 (조회할 특정 과목)
             System.out.print("\n조회할 특정 과목을 입력하세요...");
-            Scanner scan = new Scanner(System.in);
             String subjectName = scan.nextLine();
+            System.out.println("여기3");
 
             //과목 고유번호 찾기
             int subNum=0;
@@ -34,15 +50,16 @@ public class  inquireRoundGradeBySubject_Function{
                     subNum=i;
                 }
             }
-
+            System.out.println("여기4");
             System.out.println("회차별 등급을 조회합니다...");
+
             // 과목 고유번호에 맞는 ScoreStore가져오기
-            int gradeNum=1;
+            int gradeNum=0;
             for(Score s : stu.getScorelist(subNum)){
                System.out.println("회차 : "+(gradeNum++) + "\t 점수 : "+s.getScore());
             }
         }
-    inquireRoundGradeBySubject_Function(String studentId,List<Student> studentStore,List<Subject> subjectStore,List<Score> ScoreStore){
+        inquireRoundGradeBySubject_Function(String studentId,List<Student> studentStore,List<Subject> subjectStore,List<Score> ScoreStore){
             this.studentId = studentId;
             this.studentStore =studentStore;
             this.subjectStore = subjectStore;
