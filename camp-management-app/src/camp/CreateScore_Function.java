@@ -47,8 +47,10 @@ public class CreateScore_Function {
             System.out.println(i++ + ". " + subject.getSubjectName());
         }
         // 과목 입력
-        System.out.println("과목 번호를 입력해주세요.");
+        System.out.println("과목 번호를 입력해주세요."); // 과목 오류 추가 요망
         int inputSubject = sc.nextInt()-1;
+        // 과목 오류
+
         // 회차 입력
         System.out.println("시험 회차를 입력해주세요.");
         int count = availableExamGroud();
@@ -59,17 +61,19 @@ public class CreateScore_Function {
 
     }
 
+//    public
+
     // 점수 등록 존재 여부 확인
     public void dataExists (Student s,int sub,int index){
         if(s.getScorelist(sub).get(index).getScore()>=0){
             System.out.println("이미 점수가 입력되어있습니다. 다시 입력하세요.");
-            addStudentScore(sub);
+            addStudentScore(studentId);
         }else{
             System.out.println("점수를 등록할 수 있습니다.");
         }
     }
 
-    public int availableExamGroud(){ // 오류발생
+    public int availableExamGroud(){ // 오류발생 해결
         int inputExamGround = sc.nextInt();
         if(inputExamGround <= 10 && inputExamGround > 0){
 //            return inputExamGround;
