@@ -42,43 +42,38 @@ public class UpdataRoundScore_Function {
         System.out.println("과목별 회차 점수 조회를 시작합니다.");
         System.out.println("학생 ID를 입력해주세요");
         int studentId = sc.nextInt();
+        System.out.println("=============================================");
         int subjectId = 0;
-        while(true) {
-            System.out.println("학생이 신청한 과목번호를 입력해주세요");
+        System.out.println("학생이 신청한 과목번호를 입력해주세요");
             subjectId = sc.nextInt(); // 1 이하 10 이상 면 다시 받기
             if (subjectId <= 1 && subjectId >= 10) {
-                break;
             } else {
                 System.out.println("1 이상 10 이하의 숫자를 넣어주세요.");
             }
-        }
 
-        //
-        System.out.println("과목별 이전 회차의 점수를 수정할 수 있습니다.");
-        int testNum;
-        testNum = sc.nextInt();// 1 이하 10 이상 면 다시 받기
-        while(true) {
-            System.out.println("학생이 신청한 과목번호를 입력해주세요");
-            testNum = sc.nextInt(); // 1 이하 10 이상 면 다시 받기
-            if (testNum <= 1 && testNum >= 10) {
-                break;
+        System.out.println("과목별 회차 점수를 수정할 수 있습니다.\n");
+
+        int testNum= 0;
+            testNum = sc.nextInt();
+            if (testNum >= 1 && testNum <= 10) {
+                System.out.println("선택한 과목의 회차는 " + testNum + "회 입니다.");
             } else {
                 System.out.println("1 이상 10 이하의 숫자를 넣어주세요.");
             }
-        }
+
         System.out.println("변경하실 점수를 입력해주세요.");
-        int scoreId = sc.nextInt();
+        int scoreId = 0;
         while(true) {
-            scoreId= sc.nextInt(); // 1 이하 10 이상 면 다시 받기
-            if (scoreId <= 1 && scoreId >= 100) {
+            scoreId= sc.nextInt();
+            if (scoreId >= 1 && scoreId <= 100) {
                 System.out.println("변경된 점수는" + scoreId + "점 입니다.");
                 break;
             } else {
-                System.out.println("");
+                System.out.println("다시 입력해주세요.");
             }
         }
         editScore(studentId, subjectId, testNum, scoreId);
-        System.out.println("과목별 회차 점수가 수정되었습니다.");
+        System.out.println("변경된 점수가 반영되었습니다.");
     }
 
 
