@@ -5,6 +5,7 @@ import camp.model.Score;
 import camp.model.Student;
 import camp.model.Subject;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
@@ -24,30 +25,37 @@ public class CreateScore_Function {
         this.ScoreStore = ScoreStore;
     }
     ////
-    public List<Student> GetstudentStore(){
+    public List<Student> getStudentStore(){
         return this.studentStore;
     }
-    public List<Subject> GetsubjectStore(){
+    public List<Subject> getSubjectStore(){
         return this.subjectStore;
     }
-    public List<Score> GetScoreStore(){
+    public List<Score> getScoreStore(){
         return this.ScoreStore;
     }
 
+    Scanner sc = new Scanner(System.in);
+
     public void addStudentScore (int studentId){
-        Scanner sc = new Scanner(System.in);
-        Student student = GetstudentStore().get(studentId);
+        Student student = getStudentStore().get(studentId);
         student.getsubjectlist();
+        // 과목 목록 조회
+        System.out.println();
+        int i = 1;
+        for(Subject subject : student.getsubjectlist()){
+            System.out.println(i++ + ". " + subject.getSubjectName());
+        }
         // 과목 입력
         System.out.println("과목 번호를 입력해주세요.");
-        int inputSubject = sc.nextInt();
+        int inputSubject = sc.nextInt()-1;
         // 회차 입력
         System.out.println("시험 회차를 입력해주세요.");
-        int count = AvailableExamGroud();
+        int count = availableExamGroud();
         dataExists(student,inputSubject,count);
         // 점수 입력
         System.out.println("시험 점수를 입력해주세요");
-        AvailableScore(studentId,inputSubject,count);
+        availableScore(studentId,inputSubject,count);
 
     }
 
@@ -61,30 +69,65 @@ public class CreateScore_Function {
         }
     }
 
-    public int AvailableExamGroud(){
-        Scanner sc = new Scanner(System.in);
+    public int availableExamGroud(){ // 오류발생
         int inputExamGround = sc.nextInt();
         if(inputExamGround <= 10 && inputExamGround > 0){
-            return inputExamGround;
+//            return inputExamGround;
         }else {
             System.out.println("시험 회차를 1~10 값으로 입력해주세요");
-            AvailableExamGroud ();
+            return availableExamGroud();
         }
         return inputExamGround;
+
     }
 
-    public void AvailableScore (int stid,int courseid, int count){
-        Scanner sc = new Scanner(System.in); // 점수 받기
-        int inputScore = sc.nextInt();
+    public void availableScore(int stid, int courseid, int count){
+        int inputScore = sc.nextInt(); // 점수 받기
         if(inputScore <= 100 && inputScore >= 0){
             //리스트에 있는 학생 에 있는 코스 에 있는 , 회차에 값 넣기
-            Student news = studentStore.get(stid);
-            Score newScore = new Score("",count);
-            news.addScore(courseid,newScore);
-            studentStore.add(news);
-        }else {
+            // 학생 -> map<Integer,List<Score>> -> List<Score> -> Score -> Score 값 int
+            //학생 가져오기
+            Student st = studentStore.get(stid);
+            // 학생 -> 과목 -> 과목이름
+            Subject sb = st.getSubject(courseid);
+            // 학생 -> map 받기
+            HashMap map = st.getMap();
+            List<Score> ls = st.getScorelist(courseid);
+            //score (클라스)
+            // score 안에 있는 값 int 정수
+            Score sc = new Score("SC"+courseid,inputScore);
+            int score = sc.getScore();
+            System.out.println(st.getStudentName() + "\t" + sb.getSubjectName() + "\t" +count + "회차: "+ score + "점");
+            //변경 문제
+            try {
+                ls.set(count,sc); // 리스트 안에 score 변병
+            }catch (Exception e){
+                System.out.println("ls.set(count,sc); 에러");
+            }
+            try{
+                map.put(courseid,ls);  // map 안에 리스트 넣기
+            }catch (Exception e){
+                System.out.println(" map.put(courseid,ls); 에러");
+            }
+            try {
+                st.SetMap(map); // student 안에 map 넣기
+            }catch (Exception e){
+                System.out.println(" st.SetMap(map);; 에러");
+            }
+            //
+            try {
+                studentStore.set(stid,st); // 학생 리스트 안에 학생 변경
+            }catch (Exception e){
+                System.out.println(" studentStore.set(studentId,st) 에러");
+            }
+            //System.out.println(ls.get(testNum).getScore());
+
+            //
+            //
+        }
+        else {
             System.out.println("시험 점수를 0 ~ 100 값으로 입력해주세요");
-            AvailableScore(stid,courseid,count);
+            availableScore(stid,courseid,count);
         }
     }
 

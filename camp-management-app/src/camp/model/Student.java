@@ -71,4 +71,14 @@ public class Student {
     public List<Score> getScorelist(int index) {
         return scoremap.get(index);
     }
+    public HashMap<Integer,List<Score>> getMap(){
+        return this.scoremap;
+    }
+    public void SetMap(HashMap<Integer,List<Score>> scoremap){
+        this.scoremap = scoremap;
+    }
+
+    public void setSublist(List<Subject> newLs) {
+        this.subjectStore = newLs;
+    }
 }

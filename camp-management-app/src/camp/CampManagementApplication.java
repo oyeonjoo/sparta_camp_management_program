@@ -163,7 +163,6 @@ public class CampManagementApplication {
             }
         }
     }
-
     // 수강생 등록
     private static void createStudent() {
         System.out.println("\n수강생을 등록합니다...");
@@ -214,27 +213,51 @@ public class CampManagementApplication {
         }
     }
 
-    public static int getStudentId() {
-        System.out.print("\n관리할 수강생의 번호를 입력하시오...");
-        return sc.nextInt();
+    public static String getStudentId() {
+        // 수강생 목록 조회
+        System.out.println();
+        System.out.println("이름 \t | \t ID");
+        for(Student student : studentStore){
+            System.out.println(student.getStudentName() + "\t  \t" + student.getStudentId());
+        }
+        System.out.println("\n관리할 수강생의 ID를 입력하시오...");
+
+        String str = sc.next();
+        boolean contains = false;
+        for (Student student : studentStore){
+        if (student.getStudentId().equals(str)){
+            contains = true;
+            break;
+                }
+        }
+        if(!contains) {
+            System.out.println("잘못 입력하셨습니다. 다시 입력해주세요.");
+            return getStudentId();
+        }
+        System.out.println();
+        return str;
     }
 
     // 수강생의 과목별 시험 회차 및 점수 등록
     private static void createScore() {
         //학생 id 받기
 
-        int studentId = getStudentId(); // 관리할 수강생 고유 번호
+        String studentId = getStudentId(); // 관리할 수강생 고유 번호
+        int intStuentId = Integer.parseInt(studentId.substring(2, studentId.length()))-1;
+
         System.out.println("시험 점수를 등록합니다.");
         // 기능 구현
-        CreateScore_Function createscore_function = new CreateScore_Function(studentId,studentStore,subjectStore,ScoreStore);
-        try{createscore_function.addStudentScore(studentId);
-            System.out.println("\n점수 등록 성공!");}catch (Exception e){
+        CreateScore_Function createscore_function = new CreateScore_Function(intStuentId,studentStore,subjectStore,ScoreStore);
+
+        try{createscore_function.addStudentScore(intStuentId);
+            System.out.println("\n점수 등록 성공!");
+        }catch (Exception e){
             System.out.println("function.addStudentScore");
         }
         try {
-            studentStore = createscore_function.GetstudentStore();
-            subjectStore = createscore_function.GetsubjectStore();
-            ScoreStore =createscore_function.GetScoreStore();
+            studentStore = createscore_function.getStudentStore();
+            subjectStore = createscore_function.getSubjectStore();
+            ScoreStore =createscore_function.getScoreStore();
         }catch (Exception e) {
             System.out.println("geeting the data");
         }
@@ -248,11 +271,12 @@ public class CampManagementApplication {
         // 기능 구현 (수정할 과목 및 회차, 점수)
         System.out.println("시험 점수를 수정합니다...");
         UpdataRoundScore_Function update = new UpdataRoundScore_Function(studentId,studentStore,subjectStore,ScoreStore);
+        update.functions();
         studentStore = update.GetstudentStore();
         subjectStore = update.GetsubjectStore();
         ScoreStore =update.GetScoreStore();
         // 기능 구현
-        System.out.println("\n점수 수정 성공!");
+
     }
 
     // 수강생의 특정 과목 회차별 등급 조회
