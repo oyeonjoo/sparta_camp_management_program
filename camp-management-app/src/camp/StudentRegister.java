@@ -21,12 +21,11 @@ public class StudentRegister {
     public void functions() {
         // 여기에 작업하시요
         // 이름 받기
-        System.out.println(studentIndex+" 번째 하생");
         String studentName = scan.next();
         // 새리스트
         List<Subject> new_ls = new ArrayList<>();
+        studentIndex +=1;
         Student student = new Student("ST"+studentIndex, studentName);
-
         // 기능 구현 (필수 과목, 선택 과목)
         System.out.println("과목을 선택해주세요");
         //과목 리스트 프린트 하기.
