@@ -248,6 +248,7 @@ public class CampManagementApplication {
         // 기능 구현 (수정할 과목 및 회차, 점수)
         System.out.println("시험 점수를 수정합니다...");
         UpdataRoundScore_Function update = new UpdataRoundScore_Function(studentId,studentStore,subjectStore,ScoreStore);
+        update.functions();
         studentStore = update.GetstudentStore();
         subjectStore = update.GetsubjectStore();
         ScoreStore =update.GetScoreStore();
