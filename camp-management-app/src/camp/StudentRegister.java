@@ -70,7 +70,6 @@ public class StudentRegister {
         }
         //
         //
-        //
         student.setSublist(new_ls);
         studentStore.add(student);
         new_ls = null;
