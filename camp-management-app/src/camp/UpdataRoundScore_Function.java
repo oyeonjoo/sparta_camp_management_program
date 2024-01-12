@@ -84,7 +84,7 @@ public class UpdataRoundScore_Function {
             // 학생 -> 과목 -> 과목이름
             Subject sb = st.getSubject(subjectId);
             // 학생 -> map<Integer,List<Score>> -> List<Score> -> Score -> Score 값 int
-            // 학생 -> map 받기
+            // 학생 -> map 받기 (
             HashMap map = st.getMap();
             List<Score> ls = st.getScorelist(subjectId);
             // score (클라스)
