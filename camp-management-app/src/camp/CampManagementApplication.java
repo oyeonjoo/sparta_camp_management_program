@@ -253,7 +253,7 @@ public class CampManagementApplication {
         subjectStore = update.GetsubjectStore();
         ScoreStore =update.GetScoreStore();
         // 기능 구현
-        System.out.println("\n점수 수정 성공!");
+
     }
 
     // 수강생의 특정 과목 회차별 등급 조회
