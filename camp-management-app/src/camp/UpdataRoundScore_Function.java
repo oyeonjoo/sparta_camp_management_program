@@ -43,8 +43,17 @@ public class UpdataRoundScore_Function {
         System.out.println("학생 ID를 입력해주세요");
         int studentId = sc.nextInt();
         //
-        System.out.println("학생이 신청한 과목번호를 입력해주세요");
-        int subjectId = sc.nextInt(); // 1 이하 10 이상 면 다시 받기
+        int subjectId = 0;
+        while(true) {
+            System.out.println("학생이 신청한 과목번호를 입력해주세요");
+            subjectId = sc.nextInt(); // 1 이하 10 이상 면 다시 받기
+            if (subjectId <= 1 && subjectId >= 10) {
+                break;
+            } else {
+                System.out.println("1 이상 10 이하의 숫자를 넣어주세요.");
+            }
+        }
+
         //
         System.out.println("이전 회차의 숫자와 해당 점수를 입력해주세요.");
         int testNum = sc.nextInt();// 1 이하 10 이상 면 다시 받기
