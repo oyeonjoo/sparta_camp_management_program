@@ -126,7 +126,3 @@ public class UpdataRoundScore_Function {
         return this.ScoreStore;
     }
 }
-
-
-
-
