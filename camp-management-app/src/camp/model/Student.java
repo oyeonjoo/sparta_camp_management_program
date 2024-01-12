@@ -77,4 +77,8 @@ public class Student {
     public void SetMap(HashMap<Integer,List<Score>> scoremap){
         this.scoremap = scoremap;
     }
+
+    public void setSublist(List<Subject> newLs) {
+        this.subjectStore = newLs;
+    }
 }
