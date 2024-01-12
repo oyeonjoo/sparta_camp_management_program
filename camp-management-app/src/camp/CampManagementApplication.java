@@ -215,6 +215,7 @@ public class CampManagementApplication {
     }
 
     public static int getStudentId() {
+        // 수강생 목록 조회
         System.out.print("\n관리할 수강생의 번호를 입력하시오...");
         return sc.nextInt();
     }
@@ -232,9 +233,9 @@ public class CampManagementApplication {
             System.out.println("function.addStudentScore");
         }
         try {
-            studentStore = createscore_function.GetstudentStore();
-            subjectStore = createscore_function.GetsubjectStore();
-            ScoreStore =createscore_function.GetScoreStore();
+            studentStore = createscore_function.getStudentStore();
+            subjectStore = createscore_function.getSubjectStore();
+            ScoreStore =createscore_function.getScoreStore();
         }catch (Exception e) {
             System.out.println("geeting the data");
         }

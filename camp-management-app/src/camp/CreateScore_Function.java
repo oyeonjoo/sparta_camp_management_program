@@ -24,30 +24,32 @@ public class CreateScore_Function {
         this.ScoreStore = ScoreStore;
     }
     ////
-    public List<Student> GetstudentStore(){
+    public List<Student> getStudentStore(){
         return this.studentStore;
     }
-    public List<Subject> GetsubjectStore(){
+    public List<Subject> getSubjectStore(){
         return this.subjectStore;
     }
-    public List<Score> GetScoreStore(){
+    public List<Score> getScoreStore(){
         return this.ScoreStore;
     }
 
+    Scanner sc = new Scanner(System.in);
+
     public void addStudentScore (int studentId){
-        Scanner sc = new Scanner(System.in);
-        Student student = GetstudentStore().get(studentId);
+        Student student = getStudentStore().get(studentId);
         student.getsubjectlist();
         // 과목 입력
+        // 과목 목록 조회
         System.out.println("과목 번호를 입력해주세요.");
         int inputSubject = sc.nextInt();
         // 회차 입력
         System.out.println("시험 회차를 입력해주세요.");
-        int count = AvailableExamGroud();
+        int count = availableExamGroud();
         dataExists(student,inputSubject,count);
         // 점수 입력
         System.out.println("시험 점수를 입력해주세요");
-        AvailableScore(studentId,inputSubject,count);
+        availableScore(studentId,inputSubject,count);
 
     }
 
@@ -61,21 +63,19 @@ public class CreateScore_Function {
         }
     }
 
-    public int AvailableExamGroud(){
-        Scanner sc = new Scanner(System.in);
+    public int availableExamGroud(){
         int inputExamGround = sc.nextInt();
         if(inputExamGround <= 10 && inputExamGround > 0){
             return inputExamGround;
         }else {
             System.out.println("시험 회차를 1~10 값으로 입력해주세요");
-            AvailableExamGroud ();
+            availableExamGroud();
         }
         return inputExamGround;
     }
 
-    public void AvailableScore (int stid,int courseid, int count){
-        Scanner sc = new Scanner(System.in); // 점수 받기
-        int inputScore = sc.nextInt();
+    public void availableScore(int stid, int courseid, int count){
+        int inputScore = sc.nextInt(); // 점수 받기
         if(inputScore <= 100 && inputScore >= 0){
             //리스트에 있는 학생 에 있는 코스 에 있는 , 회차에 값 넣기
             Student news = studentStore.get(stid);
@@ -84,7 +84,7 @@ public class CreateScore_Function {
             studentStore.add(news);
         }else {
             System.out.println("시험 점수를 0 ~ 100 값으로 입력해주세요");
-            AvailableScore(stid,courseid,count);
+            availableScore(stid,courseid,count);
         }
     }
 
