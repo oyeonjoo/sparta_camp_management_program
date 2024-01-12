@@ -77,7 +77,7 @@ public class StudentRegister {
         optionalpaper_num = 0;
         for (int i = 0; i < studentStore.size(); i++) {
             for (int j = 0; j < studentStore.get(i).getsubjectlist().size(); j++) {
-                System.out.println("이름 : "+studentStore.get(i).getStudentName()+"과목 : " +studentStore.get(i).getsubjectlist().get(j).getSubjectName());
+                System.out.println("이름 : "+studentStore.get(i).getStudentName()+" 과목 : " +studentStore.get(i).getsubjectlist().get(j).getSubjectName());
             }
         }
         // 기다리기
