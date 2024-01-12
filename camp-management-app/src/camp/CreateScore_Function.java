@@ -42,10 +42,13 @@ public class CreateScore_Function {
         student.getsubjectlist();
         // 과목 목록 조회
         System.out.println();
-        System.out.println(student.getSubject(studentId).getSubjectName() +student.getSubject(studentId).getSubjectId());
+        int i = 1;
+        for(Subject subject : student.getsubjectlist()){
+            System.out.println(i++ + ". " + subject.getSubjectName());
+        }
         // 과목 입력
         System.out.println("과목 번호를 입력해주세요.");
-        int inputSubject = sc.nextInt();
+        int inputSubject = sc.nextInt()-1;
         // 회차 입력
         System.out.println("시험 회차를 입력해주세요.");
         int count = availableExamGroud();
@@ -66,15 +69,16 @@ public class CreateScore_Function {
         }
     }
 
-    public int availableExamGroud(){
+    public int availableExamGroud(){ // 오류발생
         int inputExamGround = sc.nextInt();
         if(inputExamGround <= 10 && inputExamGround > 0){
-            return inputExamGround;
+//            return inputExamGround;
         }else {
             System.out.println("시험 회차를 1~10 값으로 입력해주세요");
-            availableExamGroud();
+            return availableExamGroud();
         }
         return inputExamGround;
+
     }
 
     public void availableScore(int stid, int courseid, int count){
@@ -93,7 +97,7 @@ public class CreateScore_Function {
             // score 안에 있는 값 int 정수
             Score sc = new Score("SC"+courseid,inputScore);
             int score = sc.getScore();
-            System.out.println("학생이름"+st.getStudentName() + "과목이름:" + sb.getSubjectName() +"회차:"+count+ "점수:" + score);
+            System.out.println(st.getStudentName() + "\t" + sb.getSubjectName() + "\t" +count + "회차: "+ score + "점");
             //변경 문제
             try {
                 ls.set(count,sc); // 리스트 안에 score 변병

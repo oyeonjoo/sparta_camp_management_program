@@ -215,12 +215,26 @@ public class CampManagementApplication {
 
     public static String getStudentId() {
         // 수강생 목록 조회
+        System.out.println();
         System.out.println("이름 \t | \t ID");
         for(Student student : studentStore){
             System.out.println(student.getStudentName() + "\t  \t" + student.getStudentId());
         }
-        System.out.print("\n관리할 수강생의 ID를 입력하시오...");
+        System.out.println("\n관리할 수강생의 ID를 입력하시오...");
+
         String str = sc.next();
+        boolean contains = false;
+        for (Student student : studentStore){
+        if (student.getStudentId().equals(str)){
+            contains = true;
+            break;
+                }
+        }
+        if(!contains) {
+            System.out.println("잘못 입력하셨습니다. 다시 입력해주세요.");
+            return getStudentId();
+        }
+        System.out.println();
         return str;
     }
 
