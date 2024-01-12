@@ -215,22 +215,30 @@ public class CampManagementApplication {
         }
     }
 
-    public static int getStudentId() {
+    public static String getStudentId() {
         // 수강생 목록 조회
-        System.out.print("\n관리할 수강생의 번호를 입력하시오...");
-        return sc.nextInt();
+        System.out.println("이름 \t | \t ID");
+        for(Student student : studentStore){
+            System.out.println(student.getStudentName() + "\t  \t" + student.getStudentId());
+        }
+        System.out.print("\n관리할 수강생의 ID를 입력하시오...");
+        String str = sc.next();
+        return str;
     }
 
     // 수강생의 과목별 시험 회차 및 점수 등록
     private static void createScore() {
         //학생 id 받기
 
-        int studentId = getStudentId(); // 관리할 수강생 고유 번호
+        String studentId = getStudentId(); // 관리할 수강생 고유 번호
+        int intStuentId = Integer.parseInt(studentId.substring(2, studentId.length()));
         System.out.println("시험 점수를 등록합니다.");
         // 기능 구현
-        CreateScore_Function createscore_function = new CreateScore_Function(studentId,studentStore,subjectStore,ScoreStore);
-        try{createscore_function.addStudentScore(studentId);
-            System.out.println("\n점수 등록 성공!");}catch (Exception e){
+        CreateScore_Function createscore_function = new CreateScore_Function(intStuentId,studentStore,subjectStore,ScoreStore);
+
+        try{createscore_function.addStudentScore(intStuentId);
+            System.out.println("\n점수 등록 성공!");
+        }catch (Exception e){
             System.out.println("function.addStudentScore");
         }
         try {

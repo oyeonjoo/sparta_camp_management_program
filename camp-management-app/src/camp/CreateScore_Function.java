@@ -37,10 +37,11 @@ public class CreateScore_Function {
     Scanner sc = new Scanner(System.in);
 
     public void addStudentScore (int studentId){
-        Student student = getStudentStore().get(studentId);
+        Student student = getStudentStore().get(studentId-1);
         student.getsubjectlist();
-        // 과목 입력
         // 과목 목록 조회
+//        student.getSubject()
+        // 과목 입력
         System.out.println("과목 번호를 입력해주세요.");
         int inputSubject = sc.nextInt();
         // 회차 입력
@@ -49,7 +50,7 @@ public class CreateScore_Function {
         dataExists(student,inputSubject,count);
         // 점수 입력
         System.out.println("시험 점수를 입력해주세요");
-        availableScore(studentId,inputSubject,count);
+        availableScore(studentId-1,inputSubject,count);
 
     }
 
