@@ -47,21 +47,35 @@ public class UpdataRoundScore_Function {
         while(true) {
             System.out.println("학생이 신청한 과목번호를 입력해주세요");
             subjectId = sc.nextInt(); // 1 이하 10 이상 면 다시 받기
-            if (subjectId <= 1 && subjectId >= 10) {
+            if (subjectId >= 1 && subjectId <= 10) {
                 break;
             } else {
                 System.out.println("1 이상 10 이하의 숫자를 넣어주세요.");
             }
         }
+        // 1 이하 10 이상 면 다시 받기
+        // 기존 점수 입력하기
+        // 1부터 100까지 입력
+            int testNum = 0;
+            System.out.println("이전 회차의 숫자와 해당 점수를 입력해주세요.");
+            testNum = sc.nextInt();
+            if ((testNum >= 1 && testNum <= 10)) {
+                System.out.println("현재" + testNum + "회차 점수는" + "점입니다.");
+            } else {
+                System.out.println("다시 입력해주세요.");
+            }
 
-        //
-        System.out.println("이전 회차의 숫자와 해당 점수를 입력해주세요.");
-        int testNum = sc.nextInt();// 1 이하 10 이상 면 다시 받기
-        //
-        System.out.println("변경하실 점수를 입력해주세요.");
-        int scoreId = sc.nextInt();// 100 이상 0 이하 면 다시 받기
-        editScore(studentId, subjectId, testNum, scoreId);
-        System.out.println("과목별 회차 점수가 수정되었습니다.");
+            int scoreId = 0;
+            System.out.println("변경하실 점수를 입력해주세요.");
+            scoreId = sc.nextInt();// 100 이상 0 이하 면 다시 받기
+            if (scoreId <= 100 && scoreId >= 1) {
+                System.out.println("변경된 점수는" + scoreId +"점 입니다.");
+            } else {
+                System.out.println("변경할 점수를 다시 입력해주세요.");
+            }
+        System.out.println("변경된 점수가 반영되었습니다.");
+            editScore(studentId, subjectId, testNum, scoreId);
+
     }
 
     private void editScore(int studentId, int subjectId, int testNum, int scoreId) {
@@ -73,12 +87,12 @@ public class UpdataRoundScore_Function {
             // 학생 -> map 받기
             HashMap map = st.getMap();
             List<Score> ls = st.getScorelist(subjectId);
-            //score (클라스)
+            // score (클라스)
             Score sc = st.getScorelist(subjectId).get(testNum);
             // score 안에 있는 값 int 정수
             int score = sc.getScore();
             System.out.println("학생이름"+st.getStudentName() + "과목이름:" + sb.getSubjectName() +"회차:"+testNum+ "점수:" + score);
-            //변경
+            // 변경
             sc.addscore(scoreId); //addscore 메소드로  score class 안에 점수 변경
             ls.set(testNum,sc); // 리스트 안에 score 변병
             map.put(subjectId,ls);  // map 안에 리스트 넣기
