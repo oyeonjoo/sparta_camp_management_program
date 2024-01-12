@@ -39,8 +39,9 @@ public class CreateScore_Function {
     public void addStudentScore (int studentId){
         Student student = getStudentStore().get(studentId-1);
         student.getsubjectlist();
-        // 과목 입력
         // 과목 목록 조회
+//        student.getSubject()
+        // 과목 입력
         System.out.println("과목 번호를 입력해주세요.");
         int inputSubject = sc.nextInt();
         // 회차 입력
