@@ -47,25 +47,26 @@ public class CreateScore_Function {
             System.out.println(i++ + ". " + subject.getSubjectName());
         }
         // 과목 입력
-        System.out.println("과목 번호를 입력해주세요."); // 과목 오류 추가 요망
+        System.out.println("과목 번호를 입력해주세요."); // 과목 오류 발생
+        // 과목 범위 확인
         int inputSubject = availableSubject();
-//        int inputSubject = sc.nextInt()-1;
-        // 과목 오류
 
         // 회차 입력
         System.out.println("시험 회차를 입력해주세요.");
-        int count = availableExamGroud();
-        dataExists(student,inputSubject,count);
+        int count = availableExamGroud(); // 회차 범위 확인
+        dataExists(student,inputSubject,count); // 등록 내역 확인
         // 점수 입력
         System.out.println("시험 점수를 입력해주세요");
-        availableScore(studentId,inputSubject,count);
+        int inputScore = availableScore(); // 점수 범위 확인
+        addScoreToStudent(studentId,inputSubject,count,inputScore);
+        // 점수 등록이 따로 있으면 좋을텐데
 
     }
 
-    public int availableSubject (){ // 과목 오류 해결
+    public int availableSubject (){ // 과목 오류 발생
         Student student = getStudentStore().get(studentId);
-        int num = sc.nextInt();
-        if(num > student.getsubjectlist().size()){
+        int num = sc.nextInt() - 1;
+        if(num > student.getsubjectlist().size() || num < 0){
             System.out.println("입력하신 항목이 없습니다. 다시 입력해주세요.");
             return availableSubject();
         }else {
@@ -95,9 +96,17 @@ public class CreateScore_Function {
 
     }
 
-    public void availableScore(int stid, int courseid, int count){ // 범위 오류 해결 요망
-        int inputScore = sc.nextInt(); // 점수 받기
-        if(inputScore <= 100 && inputScore >= 0){
+    public int availableScore(){
+        int inputScore = sc.nextInt();
+        if (inputScore <= 100 && inputScore >= 0){
+            return inputScore;
+        }else {
+            System.out.println("시험 점수를 0~100 값으로 입력해주세요.");
+            return availableScore();
+        }
+    }
+
+    public void addScoreToStudent(int stid, int courseid, int count, int inputScore){ // 범위 오류 해결 완료
             //리스트에 있는 학생 에 있는 코스 에 있는 , 회차에 값 넣기
             // 학생 -> map<Integer,List<Score>> -> List<Score> -> Score -> Score 값 int
             //학생 가져오기
@@ -111,73 +120,68 @@ public class CreateScore_Function {
             // score 안에 있는 값 int 정수
             Score sc = new Score("SC"+courseid,inputScore);
             int score = sc.getScore();
-            System.out.println(st.getStudentName() + "\t" + sb.getSubjectName() + "\t" +count + "회차: "+ score + "점");
+            // 점수를 등급으로 치환
+            String grade = scoreToGrade(st, sb.getSubjectType(), score);
+            System.out.println(st.getStudentName() + ":  " + sb.getSubjectName() + " " +count + "회차| "+ score + "점 " + grade + "등급");
             //변경 문제
-            try {
-                ls.set(count,sc); // 리스트 안에 score 변병
-            }catch (Exception e){
-                System.out.println("ls.set(count,sc); 에러");
-            }
-            try{
-                map.put(courseid,ls);  // map 안에 리스트 넣기
-            }catch (Exception e){
-                System.out.println(" map.put(courseid,ls); 에러");
-            }
-            try {
-                st.SetMap(map); // student 안에 map 넣기
-            }catch (Exception e){
-                System.out.println(" st.SetMap(map);; 에러");
-            }
-            //
-            try {
-                studentStore.set(stid,st); // 학생 리스트 안에 학생 변경
-            }catch (Exception e){
-                System.out.println(" studentStore.set(studentId,st) 에러");
-            }
+//            try {
+//                ls.set(count,sc); // 리스트 안에 score 변병
+//            }catch (Exception e){
+//                System.out.println("ls.set(count,sc); 에러");
+//            }
+//            try{
+//                map.put(courseid,ls);  // map 안에 리스트 넣기
+//            }catch (Exception e){
+//                System.out.println(" map.put(courseid,ls); 에러");
+//            }
+//            try {
+//                st.SetMap(map); // student 안에 map 넣기
+//            }catch (Exception e){
+//                System.out.println(" st.SetMap(map);; 에러");
+//            }
+//            //
+//            try {
+//                studentStore.set(stid,st); // 학생 리스트 안에 학생 변경
+//            }catch (Exception e){
+//                System.out.println(" studentStore.set(studentId,st) 에러");
+//            }
             //System.out.println(ls.get(testNum).getScore());
 
-            //
-            //
-        }
-        else {
-            System.out.println("시험 점수를 0 ~ 100 값으로 입력해주세요");
-            availableScore(stid,courseid,count);
-        }
     }
 
     //         점수 -> 등급 클래스
-    public String scoreToGrade(Student s,int subject,int count){
+    public String scoreToGrade(Student s, String subject, int score){ // 구현 완료
         List tmp = s.getsubjectlist();
         Subject sub = (Subject) tmp.get(1);
         String subjectType = sub.getSubjectType();
         String grade = null;
-        int scores = s.getScorelist(subject).get(count).getScore();
+//        score = s.getScorelist(subject).get(count).getScore();
         switch (subjectType){
             case "MANDATORY":
-                if(scores >= 95){
+                if(score >= 95){
                     grade = "A";
-                }else if ((scores >= 90)){
+                }else if ((score >= 90)){
                     grade = "B";
-                }else if (scores >= 80){
+                }else if (score >= 80){
                     grade = "C";
-                }else if (scores >= 70){
+                }else if (score >= 70){
                     grade = "D";
-                } else if (scores >= 60) {
+                } else if (score >= 60) {
                     grade = "F";
                 }else {
                     grade = "N";
                 }
 
             case "CHOICE":
-                if(scores >= 90){
+                if(score >= 90){
                     grade = "A";
-                }else if ((scores >= 80)){
+                }else if ((score >= 80)){
                     grade = "B";
-                }else if (scores >= 70){
+                }else if (score >= 70){
                     grade = "C";
-                }else if (scores >= 60){
+                }else if (score >= 60){
                     grade = "D";
-                } else if (scores >= 50) {
+                } else if (score >= 50) {
                     grade = "F";
                 }else {
                     grade = "N";
@@ -187,7 +191,4 @@ public class CreateScore_Function {
     }
 
 }
-
-
-
 
