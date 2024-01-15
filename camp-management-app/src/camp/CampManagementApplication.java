@@ -245,7 +245,6 @@ public class CampManagementApplication {
         String studentId = getStudentId(); // 관리할 수강생 고유 번호
         int intStuentId = Integer.parseInt(studentId.substring(2, studentId.length()))-1;
 
-        System.out.println("시험 점수를 등록합니다.");
         // 기능 구현
         CreateScore_Function createscore_function = new CreateScore_Function(intStuentId,studentStore,subjectStore,ScoreStore);
 
