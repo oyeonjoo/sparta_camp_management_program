@@ -126,7 +126,14 @@ public class CampManagementApplication {
             System.out.println("2. 점수 관리");
             System.out.println("3. 프로그램 종료");
             System.out.print("관리 항목을 선택하세요...");
-            int input = sc.nextInt();
+            int input;
+            try{
+                input = sc.nextInt();
+            }catch (Exception e){
+                System.out.println("숫자로 입력해주세요");
+                input = 3;
+            }
+
 
             switch (input) {
                 case 1 -> displayStudentView(); // 수강생 관리
@@ -149,8 +156,16 @@ public class CampManagementApplication {
             System.out.println("1. 수강생 등록");
             System.out.println("2. 수강생 목록 조회");
             System.out.println("3. 메인 화면 이동");
-            System.out.print("관리 항목을 선택하세요...");
-            int input = sc.nextInt();
+            System.out.println("관리 항목을 선택하세요...");
+            int input;
+            try {
+                input = sc.nextInt();
+            }
+            catch (Exception e){
+                System.out.println("숫자로 입력해주세요");
+                input =3;
+            }
+
 
             switch (input) {
                 case 1 -> createStudent(); // 수강생 등록
@@ -197,9 +212,14 @@ public class CampManagementApplication {
             System.out.println("2. 수강생의 과목별 회차 점수 수정");
             System.out.println("3. 수강생의 특정 과목 회차별 등급 조회");
             System.out.println("4. 메인 화면 이동");
-            System.out.print("관리 항목을 선택하세요...");
-            int input = sc.nextInt();
-
+            System.out.println("관리 항목을 선택하세요...");
+            int input;
+            try {
+                input = sc.nextInt();
+            }catch (Exception e){
+                System.out.println("숫자를 넣어주세요");
+                input = 4;
+            }
             switch (input) {
                 case 1 -> createScore(); // 수강생의 과목별 시험 회차 및 점수 등록
                 case 2 -> updateRoundScoreBySubject(); // 수강생의 과목별 회차 점수 수정
@@ -225,10 +245,10 @@ public class CampManagementApplication {
         String str = sc.next();
         boolean contains = false;
         for (Student student : studentStore){
-        if (student.getStudentId().equals(str)){
-            contains = true;
-            break;
-                }
+            if (student.getStudentId().equals(str)){
+                contains = true;
+                break;
+            }
         }
         if(!contains) {
             System.out.println("잘못 입력하셨습니다. 다시 입력해주세요.");
@@ -288,6 +308,5 @@ public class CampManagementApplication {
 //        studentStore = inquireroundgradebysubject_function.GetstudentStore();
 //        subjectStore = inquireroundgradebysubject_function.GetsubjectStore();
 //        ScoreStore =inquireroundgradebysubject_function.GetScoreStore();
-
     }
 }
