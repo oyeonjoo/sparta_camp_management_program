@@ -8,22 +8,23 @@ import java.util.List;
 public class Student {
     private String studentId;
     private String studentName;
-
     private static List<Subject> subjectStore=new ArrayList<>();
-    private static HashMap<Integer,List<Score>> scoremap = new HashMap<>();
-    public Student(String seq, String studentName) {
+    private HashMap<Integer,List<Score>> scoremap = new HashMap<>();
+    public Student(String seq, String studentName){
         this.studentId = seq;
         this.studentName = studentName;
         //
         if(scoremap.size()<2){
+            HashMap<Integer,List<Score>> temphash = new HashMap<>();
             List<Score> ScoreStore;
             for (int i = 0; i < 10; i++) {
-                 ScoreStore = new LinkedList<>();
+                ScoreStore = new LinkedList<>();
                 for (int j = 0; j < 10; j++) {
                     ScoreStore.add(new Score("",-1));
                 }//
-                scoremap.put(i,ScoreStore);
+                temphash.put(i,ScoreStore);
             }
+            this.scoremap = new HashMap<>(temphash);
         }
     }
 
