@@ -1,4 +1,4 @@
-// 1/15 5:40 최종 yb inquire변경
+// 1/15 8:10 최종 yb
 package camp;
 
 import camp.model.Student;
@@ -20,9 +20,14 @@ public class  inquireRoundGradeBySubject_Function{
         //얘가 student에 들어갈 거임
         // 여기에 작업하시요
 
+        //수강생 목록 보여주기
+        System.out.println("\n----------현재 수강생 목록----------\n수강생 고유번호\t\t| 수강생 이름");
+        for(Student s : studentStore){
+            System.out.println(s.getStudentId()+"\t\t\t\t| "+s.getStudentName());
+        }
+
         Scanner scan = new Scanner(System.in);
         System.out.println("수강생의 고유 번호를 입력하세요 ex) ST1 : ");
-        System.out.println(studentStore);
         String sId = scan.nextLine(); // 관리할 수강생 고유 번호
 
         Student stu = new Student("","");
@@ -37,9 +42,16 @@ public class  inquireRoundGradeBySubject_Function{
                     .filter((Student student)-> student.getStudentId().equals(sId))
                     .forEach(student-> System.out.println(student.getStudentId()));*/
 
+        //수강생이 신청한 과목 목록 보여주기
+        System.out.println("\n----------신청한 과목 목록----------\n과목 번호 |\t\t과목 이름\t\t| 필수 / 선택");
+        int i=1;
+        for(Subject s : stu.getsubjectlist()){
+            System.out.println(i+++". \t\t|\t\t" + s.getSubjectName()+"\t\t| "+s.getSubjectType());
+        }
+
 
         // 기능 구현 (조회할 특정 과목)
-        System.out.print("\n조회할 특정 과목을 입력하세요...");
+        System.out.print("\n조회할 과목 번호를 입력하세요 ex) 1 : ");
         String subjectName = scan.nextLine();
         //subjectName = 1
 
@@ -52,6 +64,7 @@ public class  inquireRoundGradeBySubject_Function{
 
 
         subjectType=stu.getSubject(sListNum-1).getSubjectType();
+
 
 
         System.out.println("회차별 등급을 조회합니다...");
@@ -94,15 +107,7 @@ public class  inquireRoundGradeBySubject_Function{
         this.subjectStore = subjectStore;
         this.ScoreStore = ScoreStore;
     }
-    public List<Student> GetstudentStore(){
-        return this.studentStore;
-    }
-    public List<Subject> GetsubjectStore(){
-        return this.subjectStore;
-    }
-    public List<Score> GetScoreStore(){
-        return this.ScoreStore;
-    }
+
 }
 
 
