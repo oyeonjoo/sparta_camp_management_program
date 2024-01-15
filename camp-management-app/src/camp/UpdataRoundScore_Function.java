@@ -75,7 +75,7 @@ public class UpdataRoundScore_Function {
                 System.out.println("선택한 과목의 회차는 " + testNum + "회 입니다.");
             } else {
                 System.out.println("1 이상 10 이하의 숫자를 넣어주세요.");
-            }
+            }////
 
         System.out.println("=============================================");
         System.out.println("변경하실 점수를 입력해주세요.");
