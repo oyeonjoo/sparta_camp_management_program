@@ -16,8 +16,9 @@ public class Student {
         this.studentName = studentName;
         //
         if(scoremap.size()<2){
+            List<Score> ScoreStore;
             for (int i = 0; i < 10; i++) {
-                List<Score> ScoreStore = new LinkedList<>();
+                 ScoreStore = new LinkedList<>();
                 for (int j = 0; j < 10; j++) {
                     ScoreStore.add(new Score("",-1));
                 }//
