@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
+import static java.lang.Integer.parseInt;
+
 public class UpdataRoundScore_Function {
     private static List<Student> studentStore;
     private static List<Subject> subjectStore;
@@ -33,28 +35,33 @@ public class UpdataRoundScore_Function {
     private void GetInput() {
         Scanner sc = new Scanner(System.in);
         System.out.println("과목별 회차 점수 조회를 시작합니다.");
-        System.out.println("학생 ID를 입력해주세요");
-        int studentId = sc.nextInt();
+        System.out.println("수강신청한 학생들의 목록입니다.");
+        for (Student sa : studentStore) {
+            System.out.println(sa.getStudentId());
+        }
 
-        // id 입력 "ST1" 형식으로 뜨도록하고 학생 목록이
-        System.out.println("=============================================");
-        System.out.println("학생 ID | 수강생 이름");
-        System.out.println("=============================================");
-        // 값 추가
-        //
+        System.out.println("학생 ID를 입력해주세요");
+
+        String stringId = sc.next();
+        stringId = stringId.substring(2);
+        System.out.println(stringId);
+        int studentId = parseInt(stringId);
+        studentId -= 1;
+
         System.out.println("=============================================");
 
         // 과목번호 입력
-        int subjectId = 0;
         System.out.println("학생이 신청한 과목번호를 입력해주세요");
-
         // 선택한 학생의 과목 목록 같은거 추가 해주시면 더 보기 좋을 것 같아요..!!
-        System.out.println("=============================================");
-        System.out.println("| 수강생 이름 | 과목 번호 | 과목 이름 |");
+        int subjectId = 0;
         // 값 추가
+        Student tempStu = studentStore.get(studentId);
+        for (Subject sb : tempStu.getsubjectlist()) {
+            System.out.println(sb.getSubjectName());
+        }
         //
-
         subjectId = sc.nextInt(); // 1 이하 10 이상 면 다시 받기
+        subjectId -= 1;
             if (subjectId <= 1 && subjectId >= 10) {
             } else {
                 System.out.println("1 이상 10 이하의 숫자를 넣어주세요.");
