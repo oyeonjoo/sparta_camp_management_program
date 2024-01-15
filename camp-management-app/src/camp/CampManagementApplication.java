@@ -288,6 +288,6 @@ public class CampManagementApplication {
 //        studentStore = inquireroundgradebysubject_function.GetstudentStore();
 //        subjectStore = inquireroundgradebysubject_function.GetsubjectStore();
 //        ScoreStore =inquireroundgradebysubject_function.GetScoreStore();
-        System.out.println("\n등급 조회 성공!");
+
     }
 }
