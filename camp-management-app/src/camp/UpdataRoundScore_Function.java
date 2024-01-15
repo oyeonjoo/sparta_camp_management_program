@@ -70,7 +70,7 @@ public class UpdataRoundScore_Function {
         System.out.println("=============================================");
         System.out.println("과목별 수정할 회차를 입력해주세요.");
             int testNum= 0;
-            testNum = sc.nextInt();
+            testNum = sc.nextInt()-1;
             if (testNum >= 1 && testNum <= 10) {
                 System.out.println("선택한 과목의 회차는 " + testNum + "회 입니다.");
             } else {
