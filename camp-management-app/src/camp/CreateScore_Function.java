@@ -66,10 +66,10 @@ public class CreateScore_Function {
 
     }
 
-    public int availableSubject (){ // 범위 오류 발생!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    public int availableSubject (){ // 범위 오류 해결??? 완
         Student student = getStudentStore().get(studentId);
         int num = sc.nextInt() - 1;
-        if(num > student.getsubjectlist().size() || num < 0){
+        if(num >= student.getsubjectlist().size() || num < 0){
             System.out.println("입력하신 항목이 없습니다. 다시 입력해주세요.");
             return availableSubject();
         }else {
@@ -83,20 +83,20 @@ public class CreateScore_Function {
             System.out.println("이미 점수가 입력되어있습니다. 다시 입력하세요.");
             addStudentScore(studentId);
         }else{
-            System.out.print(index + " 회차 ");
+            System.out.print(index + 1 + " 회차 ");
             System.out.println("점수를 등록할 수 있습니다.");
         }
     }
 
     public int availableExamGroud(){ // 오류발생 해결
-        int inputExamGround = sc.nextInt();
-        if(inputExamGround <= 10 && inputExamGround > 0){
-//            return inputExamGround;
+        int inputExamGround = sc.nextInt() - 1;
+        if(inputExamGround < 10 && inputExamGround > -1){
+            return inputExamGround;
         }else {
             System.out.println("시험 회차를 1~10 값으로 입력해주세요");
             return availableExamGroud();
         }
-        return inputExamGround;
+//        return inputExamGround;
 
     }
 
@@ -126,30 +126,30 @@ public class CreateScore_Function {
             int score = sc.getScore();
             // 점수를 등급으로 치환
             String grade = scoreToGrade(st, sb.getSubjectType(), score);
-            System.out.println(st.getStudentName() + ":  " + sb.getSubjectName() + " " +count + "회차| "+ score + "점 " + grade + "등급");
-            //변경 문제
-//            try {
-//                ls.set(count,sc); // 리스트 안에 score 변병
-//            }catch (Exception e){
-//                System.out.println("ls.set(count,sc); 에러");
-//            }
-//            try{
-//                map.put(courseid,ls);  // map 안에 리스트 넣기
-//            }catch (Exception e){
-//                System.out.println(" map.put(courseid,ls); 에러");
-//            }
-//            try {
-//                st.SetMap(map); // student 안에 map 넣기
-//            }catch (Exception e){
-//                System.out.println(" st.SetMap(map);; 에러");
-//            }
-//            //
-//            try {
-//                studentStore.set(stid,st); // 학생 리스트 안에 학생 변경
-//            }catch (Exception e){
-//                System.out.println(" studentStore.set(studentId,st) 에러");
-//            }
-            //System.out.println(ls.get(testNum).getScore());
+            System.out.println(st.getStudentName() + ":  " + sb.getSubjectName() + " " + (count + 1) + "회차| "+ score + "점 " + grade + "등급");
+            //리스트 등록 문제!!!!!!!!!!!!!!!!!
+            try {
+            ls.set(count,sc); // 리스트 안에 score 변병
+        }catch (Exception e){
+            System.out.println("ls.set(count,sc); 에러");
+        }
+        try{
+            map.put(courseid,ls);  // map 안에 리스트 넣기
+        }catch (Exception e){
+            System.out.println(" map.put(courseid,ls); 에러");
+        }
+        try {
+            st.SetMap(map); // student 안에 map 넣기
+        }catch (Exception e){
+            System.out.println(" st.SetMap(map);; 에러");
+        }
+        //
+        try {
+            studentStore.set(stid,st); // 학생 리스트 안에 학생 변경
+        }catch (Exception e){
+            System.out.println(" studentStore.set(studentId,st) 에러");
+        }
+//        System.out.println(ls.get(testNum).getScore());
 
     }
 
@@ -158,7 +158,6 @@ public class CreateScore_Function {
         List tmp = s.getsubjectlist();
         Subject sub = (Subject) tmp.get(1);
         String subjectType = subject;
-        System.out.println(subjectType);
         String grade = null;
 //        score = s.getScorelist(subject).get(count).getScore();
         switch (subjectType){
