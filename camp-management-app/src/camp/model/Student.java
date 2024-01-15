@@ -9,29 +9,21 @@ public class Student {
     private String studentId;
     private String studentName;
 
-    private static List<Score> ScoreStore = new LinkedList<>();
     private static List<Subject> subjectStore=new ArrayList<>();
     private static HashMap<Integer,List<Score>> scoremap = new HashMap<>();
-
     public Student(String seq, String studentName) {
         this.studentId = seq;
         this.studentName = studentName;
         //
-        Score temp = new Score("",-1);
-        for (int i = 0; i < 10; i++) {
-            ScoreStore.add(temp);
-        }//
-        scoremap.put(0,ScoreStore);
-        scoremap.put(1,ScoreStore);
-        scoremap.put(2,ScoreStore);
-        scoremap.put(3,ScoreStore);
-        scoremap.put(4,ScoreStore);
-        scoremap.put(5,ScoreStore);
-        scoremap.put(6,ScoreStore);
-        scoremap.put(7,ScoreStore);
-        scoremap.put(8,ScoreStore);
-        scoremap.put(9,ScoreStore);
-        scoremap.put(10,ScoreStore);
+        if(scoremap.size()<2){
+            for (int i = 0; i < 10; i++) {
+                List<Score> ScoreStore = new LinkedList<>();
+                for (int j = 0; j < 10; j++) {
+                    ScoreStore.add(new Score("",-1));
+                }//
+                scoremap.put(i,ScoreStore);
+            }
+        }
     }
 
     // Getter
