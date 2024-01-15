@@ -41,56 +41,56 @@ public class StudentRegister {
             /// 모든 과목을 이미 넣은 상황
             try{
 
-            //// 입력받기
-            int a = 0;
-            try{
-                 a = scan.nextInt();
-            }catch (Exception e){
-                System.out.println("숫자를 입력해주세요");
-            }
-            // 3개 이상 2개미만 확인
-            if(a>=10){ // a 가 10면 나가기
-                if(optionalpaper_num<2||compulsarypaper_num<3){
-                    System.out.println("필수과목 3개, 선택과목 2개 미만입니다, 과목을 더 넣어 주세요");
-                    System.out.println("이해 하셨습니까?(아무 키 넣고 나가기)");
+                //// 입력받기
+                int a = 0;
+                try{
+                    a = scan.nextInt();
+                }catch (Exception e){
+                    System.out.println("숫자를 입력해주세요");
+                }
+                // 3개 이상 2개미만 확인
+                if(a>=10){ // a 가 10면 나가기
+                    if(optionalpaper_num<2||compulsarypaper_num<3){
+                        System.out.println("필수과목 3개, 선택과목 2개 미만입니다, 과목을 더 넣어 주세요");
+                        System.out.println("이해 하셨습니까?(아무 키 넣고 나가기)");
+                        try{
+                            String any = scan.next();
+                        }catch (Exception e){
+                            System.out.println("69 StudentRegister error");
+                        }
+                    }
+                    else {
+                        System.out.println("나갑니다");
+                        flag = false;
+                    }
+                }
+                // a 가 <1일 경우
+                else if(a < 1){
+                    System.out.println("그 과목에 있는 번호를 넣어주세요. (1 부터 9 까지)");
                     try{
                         String any = scan.next();
                     }catch (Exception e){
                         System.out.println("69 StudentRegister error");
                     }
                 }
+                // a 가 10 이하면
                 else {
-                    System.out.println("나갑니다");
-                    flag = false;
-                }
-            }
-            // a 가 <1일 경우
-            else if(a < 1){
-                System.out.println("그 과목에 있는 번호를 넣어주세요. (1 부터 9 까지)");
-                try{
-                    String any = scan.next();
-                }catch (Exception e){
-                    System.out.println("69 StudentRegister error");
-                }
-            }
-            // a 가 10 이하면
-            else {
-                Subject su = subjectStore.get(a-1);
-                if(new_ls.contains(su)){
-                    System.out.println(subjectStore.get(a-1).getSubjectName() + "은 이미 추가된 과목입니다");
-                    System.out.println("이해 하셨습니까?(아무키나 넣고 나가기)");
-                    try{
-                        String any = scan.next();
-                    }catch (Exception e){
-                        System.out.println("에러!:StudentRegister.Java/ line 72");
+                    Subject su = subjectStore.get(a-1);
+                    if(new_ls.contains(su)){
+                        System.out.println(subjectStore.get(a-1).getSubjectName() + "은 이미 추가된 과목입니다");
+                        System.out.println("이해 하셨습니까?(아무키나 넣고 나가기)");
+                        try{
+                            String any = scan.next();
+                        }catch (Exception e){
+                            System.out.println("에러!:StudentRegister.Java/ line 72");
+                        }
+                    }
+                    else {
+                        new_ls.add(su);
+                        CheckpaperType(a-1);
+                        System.out.println(subjectStore.get(a-1).getSubjectName() + "을 추가 했습니다");
                     }
                 }
-                else {
-                    new_ls.add(su);
-                    CheckpaperType(a-1);
-                    System.out.println(subjectStore.get(a-1).getSubjectName() + "을 추가 했습니다");
-                }
-            }
             }catch (Exception e){
                 System.out.println("Student Register 오류입니다.");
             }
@@ -134,4 +134,3 @@ public class StudentRegister {
         this.ScoreStore = ScoreStore;
     }
 }
-
