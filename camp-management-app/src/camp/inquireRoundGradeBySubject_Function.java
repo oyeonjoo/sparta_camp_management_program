@@ -1,4 +1,4 @@
-// 1/15 12:50 yb
+// 1/15 5:40 최종 yb inquire변경
 package camp;
 
 import camp.model.Student;
@@ -41,23 +41,18 @@ public class  inquireRoundGradeBySubject_Function{
         // 기능 구현 (조회할 특정 과목)
         System.out.print("\n조회할 특정 과목을 입력하세요...");
         String subjectName = scan.nextLine();
+        //subjectName = 1
 
-        //과목 고유번호 입력받은 숫자+SU 붙이기
-        int subjectIntegerName=Integer.parseInt(subjectName);
-        subjectIntegerName+=1;
-        subjectName="SU"+Integer.toString(subjectIntegerName);
-        System.out.println(subjectName);
+        int sListNum=0;
+        sListNum=Integer.parseInt(subjectName);
+        //sListNum=1 학생이 듣는 리스트에서 과목 번호인거임 != 과목 고유번호
 
-        //과목 고유번호 찾기
-        int subNum=0;
-        for(int i=0;i<stu.getsubjectlist().size();i++){
-            System.out.println("포문테스트1 "+i);
-            System.out.println("subjectid : "+stu.getSubject(i).getSubjectId());
-            if(stu.getSubject(i).getSubjectId().equals(subjectName)){
-                subNum=i;
-                System.out.println("테스트용 subNum과목번호 : "+i);
-            }
-        }
+        String subjectType="";
+        subjectName="SU"+subjectName;
+
+
+        subjectType=stu.getSubject(sListNum-1).getSubjectType();
+
 
         System.out.println("회차별 등급을 조회합니다...");
         //studentId = string 타입, ST1이런식임
@@ -72,24 +67,19 @@ public class  inquireRoundGradeBySubject_Function{
                 ScoreStore
         );
 
-        //지금 찾아낸 subnum이랑 jubjectId 번호가 안맞음 2차이남
 
-
-
-        // 과목 고유번호에 맞는 ScoreStore가져오기
         boolean hasScore=false;
-        int count=0;
-        int i=0;
-        // scoreToGrade(Student s, String subject, int score)
-        for(Score s : stu.getScorelist(subNum)){
-            //System.out.println("포문테스트..."+i++);
+        int count=1;
+
+        //spring Security=SU7, sLIstNum=5
+        //scoreList = 0부터 시작 0=SU1 java임
+        for(Score s : stu.getScorelist(sListNum-1)){
+
             if(s.getScore()!=-1) {
-                //System.out.println("회차 : " + (++count) + "\t 등급 : "+c.scoreToGrade(stu,"",s.getScore()));
-                System.out.println("회차 : " + (++count) + "\t 점수 : "+s.getScore());
+                System.out.println("회차 : " + (count) + "\t 등급 : "+c.scoreToGrade(subjectType,s.getScore()));
                 hasScore=true;
-            }/*else{
-                    System.out.println("여긴 안맞는곳... "+s.getScore());
-                }*/
+            }
+            count++;
         }
 
         if(!hasScore){
@@ -114,4 +104,8 @@ public class  inquireRoundGradeBySubject_Function{
         return this.ScoreStore;
     }
 }
+
+
+
+
 
