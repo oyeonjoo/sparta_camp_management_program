@@ -8,7 +8,7 @@ import java.util.List;
 public class Student {
     private String studentId;
     private String studentName;
-    private static List<Subject> subjectStore=new ArrayList<>();
+    private List<Subject> subjectStore=new ArrayList<>();
     private HashMap<Integer,List<Score>> scoremap = new HashMap<>();
     public Student(String seq, String studentName){
         this.studentId = seq;
