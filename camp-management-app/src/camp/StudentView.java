@@ -7,7 +7,7 @@ import camp.model.Subject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-public class StudentView {
+public class StudentView { //fgkjdnf
     private static List<Student> studentStore;
     private static List<Subject> subjectStore;
     private static List<Score> ScoreStore;
