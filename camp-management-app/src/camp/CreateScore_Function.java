@@ -57,7 +57,7 @@ public class CreateScore_Function {
 
         // 회차 입력
         System.out.println("시험 회차를 입력해주세요.");
-        int count = availableExamGroud(); // 회차 범위 확인
+        int count = availableExamGround(); // 회차 범위 확인
         dataExists(student,inputSubject,count); // 등록 내역 확인
         // 점수 입력
         System.out.println("시험 점수를 입력해주세요");
@@ -88,13 +88,13 @@ public class CreateScore_Function {
         }
     }
 
-    public int availableExamGroud(){ // 오류발생 해결
+    public int availableExamGround(){ // 오류발생 해결
         int inputExamGround = sc.nextInt() - 1;
         if(inputExamGround < 10 && inputExamGround > -1){
             return inputExamGround;
         }else {
             System.out.println("시험 회차를 1~10 값으로 입력해주세요");
-            return availableExamGroud();
+            return availableExamGround();
         }
 //        return inputExamGround;
 
@@ -125,7 +125,7 @@ public class CreateScore_Function {
             Score sc = new Score("SC"+courseid,inputScore);
             int score = sc.getScore();
             // 점수를 등급으로 치환
-            String grade = scoreToGrade(st, sb.getSubjectType(), score);
+            String grade = scoreToGrade(sb.getSubjectType(), score);
             System.out.println(st.getStudentName() + ":  " + sb.getSubjectName() + " " + (count + 1) + "회차| "+ score + "점 " + grade + "등급");
             //리스트 등록 문제!!!!!!!!!!!!!!!!!
             try {
@@ -154,13 +154,12 @@ public class CreateScore_Function {
     }
 
     //         점수 -> 등급 클래스
-    public String scoreToGrade(Student s, String subject, int score){ // 구현 완료
-        List tmp = s.getsubjectlist();
-        Subject sub = (Subject) tmp.get(1);
-        String subjectType = subject;
+    public String scoreToGrade(String subject, int score){ // 구현 완료
+//        List tmp = s.getsubjectlist();
+//        Subject sub = (Subject) tmp.get(1);
         String grade = null;
 //        score = s.getScorelist(subject).get(count).getScore();
-        switch (subjectType){
+        switch (subject){
             case "MANDATORY":
                 if(score >= 95){
                     grade = "A";
