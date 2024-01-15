@@ -35,31 +35,25 @@ public class UpdataRoundScore_Function {
     private void GetInput() {
         Scanner sc = new Scanner(System.in);
         System.out.println("과목별 회차 점수 조회를 시작합니다.");
+        System.out.println("수강신청한 학생들의 목록입니다.");
         for (Student sa : studentStore) {
-            System.out.println(sa.getStudentName());
+            System.out.println(sa.getStudentId());
         }
 
         System.out.println("학생 ID를 입력해주세요");
+
         String stringId = sc.next();
         stringId = stringId.substring(2);
         System.out.println(stringId);
         int studentId = parseInt(stringId);
         studentId -= 1;
 
-        // id 입력 "ST1" 형식으로 뜨도록하고 학생 목록이
-        System.out.println("=============================================");
-        System.out.println("학생 ID | 수강생 이름"); // 신규 등록 조회
-        // 값 추가
-        //
         System.out.println("=============================================");
 
         // 과목번호 입력
-        int subjectId = 0;
         System.out.println("학생이 신청한 과목번호를 입력해주세요");
-
         // 선택한 학생의 과목 목록 같은거 추가 해주시면 더 보기 좋을 것 같아요..!!
-
-        System.out.println("| 수강생 이름 | 과목 번호 | 등록된 점수 |");  // 등록한 학생에 대해 조회
+        int subjectId = 0;
         // 값 추가
         Student tempStu = studentStore.get(studentId);
         for (Subject sb : tempStu.getsubjectlist()) {
