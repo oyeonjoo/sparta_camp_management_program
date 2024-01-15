@@ -16,26 +16,21 @@ public class StudentView {
         this.subjectStore = subjectStore;
         this.ScoreStore = ScoreStore;
     }
-    public void functions() { // 01.15 16:36 수정
+    public void functions() { // 01.15 17:24 수정
         // 여기에 작업하시요
-        // 고유 번호, 이름을 조회한다.
+        // 고유 번호, 이름, 수강 과목을 조회한다.
         System.out.println("============================ 수강생 목록 ============================");
         System.out.println();
-//        System.out.printf("%-12s | %-12s | %s\n", "ID ", "수강생 이름", "수강 과목");
-        System.out.printf("%-12s | %-12s\n", "ID ", "수강생 이름");
+        System.out.printf("%-12s | %-12s | %s\n", "ID ", "수강생 이름", "수강 과목");
         if (studentStore.size() > 0) {
             for(Student s1 : studentStore) {
-                System.out.printf("%-12s | %-12s\n", s1.getStudentId(), s1.getStudentName());
+                System.out.printf("%-12s | %-12s  |", s1.getStudentId(), s1.getStudentName());
 
-                for (int i = 0; i < studentStore.size(); i++) {
-                    System.out.print(" ㄴ 수강 과목 : ");
-                    for (int j = 0; j < studentStore.get(i).getsubjectlist().size(); j++) {
-                        System.out.printf(" %s", studentStore.get(i).getsubjectlist().get(j).getSubjectName());
-                    }
-                    System.out.println();
+                for (int i = 0; i < s1.getsubjectlist().size(); i++) {
+                    System.out.printf(" %s", s1.getsubjectlist().get(i).getSubjectName());
                 }
+                System.out.println();
             }
-
         }
         System.out.println();
         System.out.println("================================ 끝 ================================");
