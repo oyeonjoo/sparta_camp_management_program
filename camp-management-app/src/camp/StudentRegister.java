@@ -38,13 +38,22 @@ public class StudentRegister {
             System.out.println("9 를 누르거나 더큰수 를 눌러 뒤로 가기");
             System.out.println("넣은 필수과목수 : "+compulsarypaper_num);
             System.out.println("넣은 선택과목수 : "+optionalpaper_num);
-            int a = scan.nextInt();
+            int a = 0;
+            try{
+                 a = scan.nextInt();
+            }catch (Exception e){
+                System.out.println("숫자를 입력해주세요");
+            }
             // 3개 이상 2개미만 확인
             if(a>=9){ // a 가 9면 나가기
                 if(optionalpaper_num<2||compulsarypaper_num<3){
                     System.out.println("필수과목 3개, 선택과목 2개 미만입니다, 과목을 더 넣어 주세요");
                     System.out.println("이해 하셨습니까?(아무키나 넣고 나가기)");
+                    try{
                     a = scan.nextInt();
+                    }catch (Exception e){
+                        System.out.println("숫자를 입력해주세요");
+                    }
                 }
                 else {
                     System.out.println("나갑니다");
@@ -57,7 +66,11 @@ public class StudentRegister {
                 if(new_ls.contains(su)){
                     System.out.println(subjectStore.get(a).getSubjectName() + "은 이미 추가된 과목입니다");
                     System.out.println("이해 하셨습니까?(아무키나 넣고 나가기)");
-                    a = scan.nextInt();
+                    try{
+                        String any = scan.next();
+                    }catch (Exception e){
+                        System.out.println("에러!:StudentRegister.Java/ line 72");
+                    }
                 }
                 else {
                     new_ls.add(su);
