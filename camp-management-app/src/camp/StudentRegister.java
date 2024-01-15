@@ -125,7 +125,6 @@ public class StudentRegister {
     public List<Student> GetstudentStore(){
         return this.studentStore;
     }
-
     //
     StudentRegister(int studentIndex,List<Student> studentStore,List<Subject> subjectStore,List<Score> ScoreStore){
         this.studentIndex = studentIndex;
