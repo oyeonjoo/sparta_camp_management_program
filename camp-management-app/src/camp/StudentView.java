@@ -16,7 +16,7 @@ public class StudentView {
         this.subjectStore = subjectStore;
         this.ScoreStore = ScoreStore;
     }
-    public void functions() { // 01.15 17:24 수정
+    public void functions() { // 01.15 17:44 수정
         // 여기에 작업하시요
         // 고유 번호, 이름, 수강 과목을 조회한다.
         System.out.println("============================ 수강생 목록 ============================");
