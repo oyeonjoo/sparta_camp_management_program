@@ -15,12 +15,14 @@ public class Student {
         this.studentId = seq;
         this.studentName = studentName;
         //
-        for (int i = 0; i < 10; i++) {
-            List<Score> ScoreStore = new LinkedList<>();
-            for (int j = 0; j < 10; j++) {
-                ScoreStore.add(new Score("",-1));
-            }//
-            scoremap.put(i,ScoreStore);
+        if(scoremap.size()<2){
+            for (int i = 0; i < 10; i++) {
+                List<Score> ScoreStore = new LinkedList<>();
+                for (int j = 0; j < 10; j++) {
+                    ScoreStore.add(new Score("",-1));
+                }//
+                scoremap.put(i,ScoreStore);
+            }
         }
     }
 
