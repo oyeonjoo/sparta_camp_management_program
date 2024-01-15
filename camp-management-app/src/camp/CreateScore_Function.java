@@ -39,6 +39,8 @@ public class CreateScore_Function {
 
     public void addStudentScore (int studentId){
         Student student = getStudentStore().get(studentId);
+        System.out.print(student.getStudentId() + " " + student.getStudentName() + " " );
+        System.out.println("시험 점수를 등록합니다.");
         student.getsubjectlist();
         // 과목 목록 조회
         System.out.println();
@@ -47,9 +49,11 @@ public class CreateScore_Function {
             System.out.println(i++ + ". " + subject.getSubjectName());
         }
         // 과목 입력
-        System.out.println("과목 번호를 입력해주세요."); // 과목 오류 발생
+        System.out.println("과목 번호를 입력해주세요.");
         // 과목 범위 확인
-        int inputSubject = availableSubject();
+        int inputSubject = availableSubject(); // 과목 범위 확인
+        System.out.print(student.getSubject(inputSubject).getSubjectName());
+        System.out.println(" 을 선택하셨습니다.");
 
         // 회차 입력
         System.out.println("시험 회차를 입력해주세요.");
@@ -58,12 +62,11 @@ public class CreateScore_Function {
         // 점수 입력
         System.out.println("시험 점수를 입력해주세요");
         int inputScore = availableScore(); // 점수 범위 확인
-        addScoreToStudent(studentId,inputSubject,count,inputScore);
-        // 점수 등록이 따로 있으면 좋을텐데
+        addScoreToStudent(studentId,inputSubject,count,inputScore); // 점수 등록
 
     }
 
-    public int availableSubject (){ // 과목 오류 발생
+    public int availableSubject (){ // 범위 오류 발생!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         Student student = getStudentStore().get(studentId);
         int num = sc.nextInt() - 1;
         if(num > student.getsubjectlist().size() || num < 0){
@@ -80,6 +83,7 @@ public class CreateScore_Function {
             System.out.println("이미 점수가 입력되어있습니다. 다시 입력하세요.");
             addStudentScore(studentId);
         }else{
+            System.out.print(index + " 회차 ");
             System.out.println("점수를 등록할 수 있습니다.");
         }
     }
@@ -153,7 +157,8 @@ public class CreateScore_Function {
     public String scoreToGrade(Student s, String subject, int score){ // 구현 완료
         List tmp = s.getsubjectlist();
         Subject sub = (Subject) tmp.get(1);
-        String subjectType = sub.getSubjectType();
+        String subjectType = subject;
+        System.out.println(subjectType);
         String grade = null;
 //        score = s.getScorelist(subject).get(count).getScore();
         switch (subjectType){
@@ -171,6 +176,7 @@ public class CreateScore_Function {
                 }else {
                     grade = "N";
                 }
+            break;
 
             case "CHOICE":
                 if(score >= 90){
@@ -186,6 +192,7 @@ public class CreateScore_Function {
                 }else {
                     grade = "N";
                 }
+            break;
         }
         return grade;
     }
