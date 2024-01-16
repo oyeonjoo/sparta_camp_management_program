@@ -11,10 +11,9 @@ public class StudentView {
     private static List<Student> studentStore;
     private static List<Subject> subjectStore;
     private static List<Score> ScoreStore;
-    StudentView(List<Student> studentStore,List<Subject> subjectStore,List<Score> ScoreStore){
+    StudentView(List<Student> studentStore,List<Subject> subjectStore){
         this.studentStore = studentStore;
         this.subjectStore = subjectStore;
-        this.ScoreStore = ScoreStore;
     }
     public void functions() { // 01.15 17:44 수정
         // 여기에 작업하시요

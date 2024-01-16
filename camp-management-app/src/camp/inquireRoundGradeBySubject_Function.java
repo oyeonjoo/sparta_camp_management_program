@@ -76,8 +76,7 @@ public class  inquireRoundGradeBySubject_Function{
         CreateScore_Function c = new CreateScore_Function(
                 studentIdInteger,
                 studentStore,
-                subjectStore,
-                ScoreStore
+                subjectStore
         );
 
 
@@ -101,11 +100,10 @@ public class  inquireRoundGradeBySubject_Function{
             System.out.println("\n등급 조회 성공!");
         }
     }
-    inquireRoundGradeBySubject_Function(String studentId,List<Student> studentStore,List<Subject> subjectStore,List<Score> ScoreStore){
+    inquireRoundGradeBySubject_Function(String studentId,List<Student> studentStore,List<Subject> subjectStore){
         this.studentId = studentId;
         this.studentStore =studentStore;
         this.subjectStore = subjectStore;
-        this.ScoreStore = ScoreStore;
     }
 
 }

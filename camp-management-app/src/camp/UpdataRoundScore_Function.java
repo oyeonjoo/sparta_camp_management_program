@@ -13,7 +13,7 @@ import static java.lang.Integer.parseInt;
 public class UpdataRoundScore_Function {
     private static List<Student> studentStore;
     private static List<Subject> subjectStore;
-    private static List<Score> ScoreStore;
+
     private String studentId;
     public void functions() {    // 과목별 회차 점수 수정  ( 과목, 회차, 이름, 점수)
         if(CheckStudentExist()) {  //학생이 있는지 없는지
@@ -123,11 +123,10 @@ public class UpdataRoundScore_Function {
         //
     }
 
-    UpdataRoundScore_Function(String studentId,List<Student> studentStore,List<Subject> subjectStore,List<Score> ScoreStore){
+    UpdataRoundScore_Function(String studentId,List<Student> studentStore,List<Subject> subjectStore){
         this.studentId = studentId;
         this.studentStore =studentStore;
         this.subjectStore = subjectStore;
-        this.ScoreStore = ScoreStore;
     }
     public List<Student> GetstudentStore(){
         return this.studentStore;
@@ -135,7 +134,5 @@ public class UpdataRoundScore_Function {
     public List<Subject> GetsubjectStore(){
         return this.subjectStore;
     }
-    public List<Score> GetScoreStore(){
-        return this.ScoreStore;
-    }
+
 }
