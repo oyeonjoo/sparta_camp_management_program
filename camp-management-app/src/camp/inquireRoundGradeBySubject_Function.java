@@ -20,6 +20,8 @@ public class  inquireRoundGradeBySubject_Function{
         //얘가 student에 들어갈 거임
         // 여기에 작업하시요
 
+        boolean hasOrNot=false;
+
         //수강생 목록 보여주기
         System.out.println("\n----------현재 수강생 목록----------\n수강생 고유번호\t\t| 수강생 이름");
         for(Student s : studentStore){
@@ -27,13 +29,22 @@ public class  inquireRoundGradeBySubject_Function{
         }
 
         Scanner scan = new Scanner(System.in);
-        System.out.println("수강생의 고유 번호를 입력하세요 ex) ST1 : ");
+        Student stu = new Student("", "");
+        System.out.print("수강생의 고유 번호를 입력하세요 ex) ST1 : ");
         String sId = scan.nextLine(); // 관리할 수강생 고유 번호
 
-        Student stu = new Student("","");
-        for(Student s : studentStore){
-            if(s.getStudentId().equals(sId)){
-                stu = s;
+        while(true) {
+            for (Student s : studentStore) {
+                if (s.getStudentId().equals(sId)) {
+                    stu = s;
+                    hasOrNot = true;
+                    break;
+                }
+            }
+            if (!hasOrNot) {
+                System.out.println("잘못 입력했습니다. 다시 입력해주세요");
+                sId = scan.nextLine();
+            }else{
                 break;
             }
         }
@@ -53,7 +64,7 @@ public class  inquireRoundGradeBySubject_Function{
         // 기능 구현 (조회할 특정 과목)
         System.out.print("\n조회할 과목 번호를 입력하세요 ex) 1 : ");
         String subjectName = scan.nextLine();
-        //subjectName = 1
+
 
         int sListNum=0;
         sListNum=Integer.parseInt(subjectName);
@@ -67,7 +78,8 @@ public class  inquireRoundGradeBySubject_Function{
 
 
 
-        System.out.println("회차별 등급을 조회합니다...");
+        System.out.println("-----수강생 "+stu.getStudentName()+"의 "+stu.getSubject(sListNum-1).getSubjectName()
+                +" 회차별 점수를 조회합니다-----");
         //studentId = string 타입, ST1이런식임
         //string => int st떼어내고 바꾸기
         String a=sId.substring(2);
@@ -79,14 +91,12 @@ public class  inquireRoundGradeBySubject_Function{
                 subjectStore
         );
 
-
         boolean hasScore=false;
         int count=1;
 
         //spring Security=SU7, sLIstNum=5
         //scoreList = 0부터 시작 0=SU1 java임
         for(Score s : stu.getScorelist(sListNum-1)){
-
             if(s.getScore()!=-1) {
                 System.out.println("회차 : " + (count) + "\t 등급 : "+c.scoreToGrade(subjectType,s.getScore()));
                 hasScore=true;
