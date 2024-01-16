@@ -126,10 +126,9 @@ public class StudentRegister {
         return this.studentStore;
     }
     //
-    StudentRegister(int studentIndex,List<Student> studentStore,List<Subject> subjectStore,List<Score> ScoreStore){
+    StudentRegister(int studentIndex,List<Student> studentStore,List<Subject> subjectStore){
         this.studentIndex = studentIndex;
         this.studentStore =studentStore;
         this.subjectStore = subjectStore;
-        this.ScoreStore = ScoreStore;
     }
 }

@@ -18,7 +18,7 @@ public class CreateScore_Function {
         // 여기에 작업하시요
 
     }
-    CreateScore_Function(int studentId,List<Student> studentStore,List<Subject> subjectStore,List<Score> ScoreStore){
+    CreateScore_Function(int studentId,List<Student> studentStore,List<Subject> subjectStore){
         this.studentId = studentId;
         this.studentStore =studentStore;
         this.subjectStore = subjectStore;
